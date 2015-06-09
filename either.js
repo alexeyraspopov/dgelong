@@ -2,14 +2,14 @@ function Either() {
 	// TODO: implement me...
 }
 
-function Right() {
+function Success() {
 	// TODO: implement me...
 }
 
-function Left() {
+function Failure() {
 	// TODO: implement me...
 }
 
-Either.Right = Right;
-Either.Left = Left;
+Either.Success = Success;
+Either.Failure = Failure;
 exports.Either = Either;
