@@ -1,2 +1,2 @@
-exports.Maybe = require('./maybe.js');
-exports.Either = require('./either.js');
+exports.Maybe = require('./maybe');
+exports.Either = require('./either');
