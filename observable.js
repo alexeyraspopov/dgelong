@@ -30,6 +30,19 @@ function Observable(producer) {
 		concat: function() {
 			// TODO: implement me...
 		},
+		takeUntil: function() {
+			// TODO: implement me...
+		}
+		distinctUntilChanged: function() {
+			var cache;
+
+			return bind(this, function(value, onNext) {
+				if (typeof cache === 'undefined' || cache !== value) {
+					cache = value;
+					onNext(value);
+				}
+			});
+		},
 		forEach: function(onNext, onError, onCompleted) {
 			return producer(onNext, onError, onCompleted);
 		}
