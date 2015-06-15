@@ -1,15 +1,26 @@
-function Maybe() {
-	// TODO: implement me...
-}
+var Monad = require('./monad'),
+	Just, Nothing, Maybe;
 
-function Just() {
-	// TODO: implement me...
-}
+Just = Monad(function(value, right) {
+	return Just(right(value));
+});
 
-function Nothing() {
-	// TODO: implement me...
-}
+Nothing = Monad(function(value, _, left) {
+	return isFunction(left) ? Just(left(value)) : Nothing();
+});
+
+Maybe = Monad(function(value, right, left) {
+	return (isNullable(value) ? Just(value) : Nothing()).bind(right, left);
+});
 
 Maybe.Just = Just;
 Maybe.Nothing = Nothing;
 exports.Maybe = Maybe;
+
+function isNullable(value){
+	return typeof value === 'undefined' || value === null;
+}
+
+function isFunction(value) {
+	return typeof value === 'function';
+}
