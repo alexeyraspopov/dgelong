@@ -18,10 +18,16 @@ function Observable(producer) {
 				if (predicate(value)) onNext(value);
 			});
 		},
-		reduce: function(reducer, initial) {
+		reduce: function(reducer, acc) {
+			var accNotDefined = typeof acc === 'undefined';
+
 			return bind(this, function(value, onNext) {
-				initial = reducer(initial, value);
-				onNext(initial);
+				if (accNotDefined) {
+					acc = value;
+				} else {
+					acc = reducer(acc, value);
+					onNext(acc);
+				}
 			});
 		},
 		merge: function() {
@@ -32,7 +38,7 @@ function Observable(producer) {
 		},
 		takeUntil: function() {
 			// TODO: implement me...
-		}
+		},
 		distinctUntilChanged: function() {
 			var cache;
 
