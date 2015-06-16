@@ -10,11 +10,11 @@ Nothing = Monad(function(value, _, left) {
 });
 
 Maybe = Monad(function(value, right, left) {
-	return (isNullable(value) ? Just(value) : Nothing()).bind(right, left);
+	return (isNullable(value) ? Nothing() : Just(value)).bind(right, left);
 });
 
-Maybe.Just = Just;
-Maybe.Nothing = Nothing;
+exports.Just = Just;
+exports.Nothing = Nothing;
 exports.Maybe = Maybe;
 
 function isNullable(value){
