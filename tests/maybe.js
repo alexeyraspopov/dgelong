@@ -25,9 +25,7 @@ describe('Just', function() {
 	it('should satisfy the associativity law', function() {
 		var m = Just(value),
 			left = m.bind(Just).bind(morphism),
-			right = m.bind(function(v){
-				return Just(v).bind(morphism);
-			});
+			right = m.bind(v => Just(v).bind(morphism));
 
 		expect(left.valueOf()).to.be(right.valueOf());
 	});
@@ -47,11 +45,9 @@ describe('Nothing', function() {
 	it('should use Just in alternative way', function() {
 		var value = 5;
 
-		Nothing().bind(null, function(){
-			return Just(value);
-		}).bind(function(wrapped){
-			expect(wrapped).to.be(value);
-		});
+		Nothing()
+			.bind(null, () => Just(value))
+			.bind(wrapped => expect(wrapped).to.be(value));
 	});
 });
 
