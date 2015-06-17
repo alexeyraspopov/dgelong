@@ -4,7 +4,7 @@
   "description": "A JavaScript implementation of useful monads",
   "main": "index.js",
   "scripts": {
-    "test": "mocha specs.js"
+    "test": "mocha --compilers js:babel/register tests/*.js"
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/alexeyraspopov/dgelong",
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "babel": "^5.5.8",
+    "expect.js": "^0.3.1",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.3"
   }
 }
