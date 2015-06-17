@@ -1,15 +1,30 @@
-function Either() {
-	// TODO: implement me...
-}
+var Monad = require('./monad'),
+	Success, Failure, Either;
 
-function Success() {
-	// TODO: implement me...
-}
+Success = Monad(function(value, right) {
+	return Success(right(value));
+});
 
-function Failure() {
-	// TODO: implement me...
-}
+Failure = Monad(function(value, _, left) {
+	return isFunction(left) ? Success(left(value)) : Failure(value);
+});
 
-Either.Success = Success;
-Either.Failure = Failure;
+Either = Monad(function(fn, right, left) {
+	return run(fn).bind(right, left);
+});
+
+exports.Success = Success;
+exports.Failure = Failure;
 exports.Either = Either;
+
+function isFunction(value) {
+	return typeof value === 'function';
+}
+
+function run(fn) {
+	try {
+		return Success(fn());
+	} catch(e) {
+		return Failure(e);
+	}
+}
