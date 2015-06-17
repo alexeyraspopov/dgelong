@@ -2,7 +2,7 @@ function isMonad(value) {
 	return value && value.isMonad;
 }
 
-module.exports = function Monad(bind) {
+module.exports = function SpatialMonad(bind) {
 	return function Unit(value) {
 		return isMonad(value) ? value : {
 			isMonad: true,
