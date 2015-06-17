@@ -29,6 +29,24 @@ A JavaScript implementation of useful monads.
 	validateUserPassword('boo')
 	    .bind(savePassword, showError);
 
+## Future
+
+TBD
+
+## Observable
+
+	var clicks = Observable(function(next){
+		document.addEventListener('click', next);
+
+		return {
+			dispose(){ document.removeEventListener('click', next); }
+		};
+	});
+
+	clicks
+		.map(event => event.target)
+		.forEach(element => ...);
+
 ## License
 
-MIT
+MIT (c) Alexey Raspopov
