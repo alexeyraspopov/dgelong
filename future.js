@@ -23,7 +23,7 @@ function Future(producer) {
 		isMonad: true,
 		bind: function(right, left) {
 			return Future(function(resolve) {
-				pending.push(map(resolve, morphism));
+				pending.push(map(resolve, right));
 			});
 		}
 	};
