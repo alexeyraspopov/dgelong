@@ -17,10 +17,10 @@ exports.Just = Just;
 exports.Nothing = Nothing;
 exports.Maybe = Maybe;
 
-function isNullable(value){
-	return typeof value === 'undefined' || value === null;
-}
-
 function isFunction(value) {
 	return typeof value === 'function';
+}
+
+function isNullable(value){
+	return typeof value === 'undefined' || value === null;
 }
