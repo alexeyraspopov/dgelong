@@ -31,7 +31,17 @@ A JavaScript implementation of useful monads.
 
 ## Future
 
-TBD
+	function fetch(url) {
+		return Future(function(resolve, reject) {
+			var xhr = new XMLHttpRequest();
+
+			xhr.onload = () => resolve(this.response);
+			xhr.onerror = () => reject(this);
+		});
+	}
+
+	fetch('/products')
+		.bind(products => ...);
 
 ## Observable
 
