@@ -43,6 +43,15 @@ A JavaScript implementation of useful monads.
 	fetch('/products')
 		.bind(products => ...);
 
+## Iterator
+
+	var listIterator = Iterator([1, 2, 3]);
+
+	listIterator.next(); // { value: 1, done: false }
+	listIterator.next(); // { value: 2, done: false }
+	listIterator.next(); // { value: 3, done: false }
+	listIterator.next(); // { value: undefined, done: true }
+
 ## Observable
 
 	var clicks = Observable(function(next){

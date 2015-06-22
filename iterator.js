@@ -18,10 +18,14 @@ function ArrayIterator(collection) {
 }
 
 function FnIterator(fn) {
+	var cached;
+
 	return {
-		next: function(a) {
+		next: function() {
+			cached = fn(cached);
+
 			return {
-				value: fn(a),
+				value: cached,
 				done: false
 			};
 		}
