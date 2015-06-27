@@ -1,0 +1,3 @@
+describe('Observable', function() {
+
+});
