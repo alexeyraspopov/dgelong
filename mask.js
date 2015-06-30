@@ -1,7 +1,7 @@
 'use strict';
 
 function Mask(keys, hasSum) {
-	var acc = emptyObject();
+	var acc = Object.create(null);
 
 	if (hasSum) {
 		acc.ALL = Math.pow(2, keys.length) - 1;
