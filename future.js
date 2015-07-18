@@ -1,8 +1,12 @@
+function isMonad(value) {
+	return value && value.isMonad;
+}
+
 function map(resolve, morphism) {
 	return function(value) {
 		var result = morphism(value);
 
-		if (result && result.isMonad) {
+		if (isMonad(result)) {
 			result.bind(resolve);
 		} else {
 			resolve(result);
@@ -29,34 +33,6 @@ function Future(producer) {
 	};
 }
 
-function asyncResolve(resolve) {
-	setTimeout(function() {
-		resolve(13);
-	}, 1000);
-}
-
-Future(asyncResolve).bind(function(value) {
-	return value * 3;
-}).bind(function(value) {
-	console.log(value);
-});
-
-var b = Future(asyncResolve);
-
-b.bind(function(value) {
-	console.log('1', value);
-});
-
-b.bind(function(value) {
-	console.log('2', value);
-});
-
-Future(asyncResolve).bind(function(value) {
-	return Future(function(resolve) {
-		setTimeout(function() {
-			resolve(value * 2);
-		}, 2000);
-	});
-}).bind(function(a) {
-	console.log(a);
-})
+// exports.Resolve = Resolve;
+// exports.Reject = Reject;
+exports.Future = Future;
