@@ -9,9 +9,9 @@ Nothing = Monad(function(value, _, left) {
 	return isFunction(left) ? Just(left(value)) : Nothing();
 });
 
-function Maybe(value) {
-	return (isNullable(value) ? Nothing() : Just(value));
-}
+Maybe = Monad(function(value, right, left) {
+	return (isNullable(value) ? Nothing() : Just(value)).bind(right, left);
+});
 
 exports.Just = Just;
 exports.Nothing = Nothing;

@@ -9,9 +9,9 @@ Failure = Monad(function(value, _, left) {
 	return isFunction(left) ? Success(left(value)) : Failure(value);
 });
 
-function Either(fn) {
-	return run(fn);
-}
+Either = Monad(function(fn, right, left) {
+	return run(fn).bind(right, left);
+});
 
 exports.Success = Success;
 exports.Failure = Failure;
