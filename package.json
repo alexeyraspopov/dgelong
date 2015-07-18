@@ -10,7 +10,9 @@
   "keywords": [
     "monad",
     "maybe",
-    "either"
+    "either",
+    "future",
+    "observable"
   ],
   "author": "Alexey Raspopov",
   "license": "MIT",
