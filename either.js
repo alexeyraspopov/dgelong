@@ -1,4 +1,4 @@
-var Monad = require('./monad'),
+var Monad = require('./monad').SpatialMonad,
 	Success, Failure, Either;
 
 Success = Monad(function(value, right) {
