@@ -39,7 +39,7 @@ function Observable(producer) {
 		takeUntil: function() {
 			// TODO: implement me...
 		},
-		distinctUntilChanged: function() {
+		unique: function() {
 			var cache;
 
 			return bind(this, function(value, onNext) {
