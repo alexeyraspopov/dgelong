@@ -2,9 +2,9 @@
 
 Set of useful first-class structures which allow to you get rid of your developer's pain.
 
- * *Flatten* by default.
- * Minimal API sufrace area.
- * Full interoperability between all structures and JavaScript natives.
+ * **Flatten** by default.
+ * **Minimal API sufrace area**.
+ * **Full interoperability** between all structures and JavaScript natives.
 
 ## Maybe
 
