@@ -8,6 +8,7 @@
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
+    "functional",
     "monad",
     "maybe",
     "either",
