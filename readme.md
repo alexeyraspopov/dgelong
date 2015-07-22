@@ -19,7 +19,7 @@ A JavaScript implementation of useful monads.
 
 ## Either
 
-	function validateUserPassword(password){
+	function validateUserPassword(password) {
 	    if (password.length < 10) return Failure('Password too short');
 	    if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
 
@@ -42,15 +42,6 @@ A JavaScript implementation of useful monads.
 
 	fetch('/products')
 		.bind(products => ...);
-
-## Iterator
-
-	var listIterator = Iterator([1, 2, 3]);
-
-	listIterator.next(); // { value: 1, done: false }
-	listIterator.next(); // { value: 2, done: false }
-	listIterator.next(); // { value: 3, done: false }
-	listIterator.next(); // { value: undefined, done: true }
 
 ## Observable
 
