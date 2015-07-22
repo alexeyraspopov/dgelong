@@ -1,6 +1,6 @@
 # Dgelong
 
-A JavaScript implementation of useful monads.
+Set of useful first-class structures which allow to you get rid of your developer's pain.
 
 ## Maybe
 
