@@ -13,9 +13,9 @@ Maybe = Monad(function(value, right, left) {
 	return (isNullable(value) ? Nothing() : Just(value)).bind(right, left);
 });
 
-exports.Just = Just;
-exports.Nothing = Nothing;
-exports.Maybe = Maybe;
+Maybe.Just = Just;
+Maybe.Nothing = Nothing;
+module.exports = Maybe;
 
 function isFunction(value) {
 	return typeof value === 'function';

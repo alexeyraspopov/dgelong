@@ -13,9 +13,9 @@ Either = Monad(function(fn, right, left) {
 	return run(fn).bind(right, left);
 });
 
-exports.Success = Success;
-exports.Failure = Failure;
-exports.Either = Either;
+Either.Success = Success;
+Either.Failure = Failure;
+module.exports = Either;
 
 function isFunction(value) {
 	return typeof value === 'function';

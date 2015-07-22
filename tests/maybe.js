@@ -1,6 +1,7 @@
 var expect = require('expect.js'),
 	sinon = require('sinon'),
-	{Maybe, Just, Nothing} = require('../maybe');
+	Maybe = require('../maybe'),
+	{Just, Nothing} = Maybe;
 
 describe('Just', function() {
 	var value = 13,
