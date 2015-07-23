@@ -1,7 +1,7 @@
 var Monad = require('./monad');
 
 function bindSuccess(value, right) {
-	return Success(right(value));
+	return Monad.isFunction(right) ? Success(right(value)) : Success(value);
 }
 
 function bindFailure(value, right, left) {
