@@ -1,7 +1,7 @@
 var Monad = require('./monad');
 
 function bindJust(value, right) {
-	return Just(right(value));
+	return Monad.isFunction(right) ? Just(right(value)) : Just(value);
 }
 
 function bindNothing(value, right, left) {
