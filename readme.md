@@ -1,5 +1,7 @@
 # Dgelong
 
+***It's not ready for production***
+
 Set of useful first-class structures which allow to you get rid of your developer's pain.
 
  * **Flatten** by default.
