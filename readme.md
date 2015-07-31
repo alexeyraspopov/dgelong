@@ -1,6 +1,6 @@
 # Dgelong
 
-***It's not ready for production***
+***It's not ready for production. Stay tuned.***
 
 Set of useful first-class structures which allow to you get rid of your developer's pain.
 
