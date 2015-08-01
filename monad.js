@@ -3,7 +3,7 @@ function isMonad(value) {
 }
 
 function isFunction(value) {
-	return typeof value === 'function';
+	return value instanceof Function;
 }
 
 function Spatial(bind, value) {
@@ -15,13 +15,13 @@ function Spatial(bind, value) {
 	};
 }
 
-function TemporalMonad(bind) {
+function TemporalMonad(bind, producer) {
+	var value;
+
 	return {
 		isMonad: true,
 		toString: null,
-		valueOf: function() {
-			// TODO: implement me...
-		},
+		valueOf: function() { return value; },
 		bind: function() {
 			// TODO: implement me...
 		}

@@ -25,5 +25,5 @@ Maybe.Nothing = Nothing;
 module.exports = Maybe;
 
 function isNullable(value){
-	return typeof value === 'undefined' || value === null;
+	return value === void 0 || value === null;
 }
