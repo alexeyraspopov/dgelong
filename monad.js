@@ -16,8 +16,6 @@ function SpatialMonad(bind, value) {
 }
 
 function TemporalMonad(bind, producer) {
-	var value;
-
 	return {
 		isMonad: true,
 		toString: null,
