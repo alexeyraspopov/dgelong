@@ -1,33 +1,45 @@
-function isMonad(value) {
-	return value && value.isMonad;
+var Monad = require('./monad');
+
+function run(tasks, value) {
+	while (tasks.length) setTimeout(tasks.shift(), 0, value);
 }
 
-function map(resolve, morphism) {
-	return function(value) {
-		var result = morphism(value);
+function pendingValue(producer) {
+	var status = 'pending', value, pending = [];
 
-		if (isMonad(result)) {
-			result.bind(resolve);
+	producer(function(result) {
+		status = 'resolved';
+		value = result;
+		run(pending, value);
+	});
+
+	return function(cont) {
+		if (status === 'resolved') {
+			run([cont], value);
 		} else {
-			resolve(result);
+			pending.push(cont);
 		}
 	};
 }
 
-function Future(producer) {
-	var pending = [];
+function flatten(value, resolve) {
+	if (Monad.isMonad(value)) {
+		value.bind(resolve);
+	} else {
+		resolve(value);
+	}
+}
 
-	producer(function(value) {
-		pending.forEach(function(cb) {
-			cb(value);
-		});
-	});
+function Future(producer) {
+	var wrappedProducer = pendingValue(producer);
 
 	return {
 		isMonad: true,
-		bind: function(right, left) {
+		bind: function(right) {
 			return Future(function(resolve) {
-				pending.push(map(resolve, right));
+				wrappedProducer(function(value) {
+					flatten(right(value), resolve);
+				});
 			});
 		}
 	};
