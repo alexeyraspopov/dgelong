@@ -5,19 +5,20 @@ function run(tasks, value) {
 }
 
 function pendingValue(producer) {
-	var status = 'pending', value, pending = [];
+	var isPending = true, value, pending = [];
 
 	producer(function(result) {
-		status = 'resolved';
+		isPending = false;
 		value = result;
+
 		run(pending, value);
 	});
 
-	return function(cont) {
-		if (status === 'resolved') {
-			run([cont], value);
+	return function(next) {
+		if (isPending) {
+			pending.push(next);
 		} else {
-			pending.push(cont);
+			run([next], value);
 		}
 	};
 }
