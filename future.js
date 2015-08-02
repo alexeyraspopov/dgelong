@@ -1,7 +1,9 @@
 var Monad = require('./monad');
 
 function run(tasks, value) {
-	while (tasks.length) setTimeout(tasks.shift(), 0, value);
+	while (tasks.length) {
+		setTimeout(tasks.shift(), 0, value);
+	}
 }
 
 function pendingValue(producer) {
@@ -33,17 +35,21 @@ function flatten(value, right, left) {
 	}
 }
 
+function bindFuture(next, right, left) {
+	return Future(function(resolve, reject) {
+		next(function(value) {
+			flatten(right(value), resolve);
+		}, reject);
+	});
+}
+
 function Future(producer) {
-	var wrappedValue = pendingValue(producer);
+	var value = pendingValue(producer);
 
 	return {
 		isMonad: true,
-		bind: function(right) {
-			return Future(function(resolve, reject) {
-				wrappedValue(function(value) {
-					flatten(right(value), resolve, reject);
-				});
-			});
+		bind: function(right, left) {
+			return bindFuture(value, right, left);
 		}
 	};
 }
