@@ -12,6 +12,8 @@ function pendingValue(producer) {
 		value = result;
 
 		run(pending, value);
+	}, function(error) {
+		// TODO: implement left part
 	});
 
 	return function(next) {
@@ -23,11 +25,11 @@ function pendingValue(producer) {
 	};
 }
 
-function flatten(value, resolve) {
+function flatten(value, right, left) {
 	if (Monad.isMonad(value)) {
-		value.bind(resolve);
+		return value.bind(right, left);
 	} else {
-		resolve(value);
+		return right(value);
 	}
 }
 
@@ -37,9 +39,9 @@ function Future(producer) {
 	return {
 		isMonad: true,
 		bind: function(right) {
-			return Future(function(resolve) {
+			return Future(function(resolve, reject) {
 				wrappedProducer(function(value) {
-					flatten(right(value), resolve);
+					flatten(right(value), resolve, reject);
 				});
 			});
 		}
