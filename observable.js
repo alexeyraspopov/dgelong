@@ -50,6 +50,7 @@ function Observable(producer) {
 			});
 		},
 		forEach: function(onNext, onError, onCompleted) {
+			// TODO: wrap functions in scheduler
 			return producer(onNext, onError, onCompleted);
 		}
 	};
