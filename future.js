@@ -34,13 +34,13 @@ function flatten(value, right, left) {
 }
 
 function Future(producer) {
-	var wrappedProducer = pendingValue(producer);
+	var wrappedValue = pendingValue(producer);
 
 	return {
 		isMonad: true,
 		bind: function(right) {
 			return Future(function(resolve, reject) {
-				wrappedProducer(function(value) {
+				wrappedValue(function(value) {
 					flatten(right(value), resolve, reject);
 				});
 			});
@@ -48,6 +48,18 @@ function Future(producer) {
 	};
 }
 
-// exports.Resolve = Resolve;
-// exports.Reject = Reject;
+function Resolve(value) {
+	return Future(function(resolve) {
+		resolve(value);
+	});
+}
+
+function Reject(error) {
+	return Future(function(resolve, reject) {
+		reject(error);
+	});
+}
+
+exports.Resolve = Resolve;
+exports.Reject = Reject;
 exports.Future = Future;

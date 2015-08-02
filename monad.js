@@ -6,7 +6,7 @@ function isFunction(value) {
 	return value instanceof Function;
 }
 
-function Spatial(bind, value) {
+function SpatialMonad(bind, value) {
 	return {
 		isMonad: true,
 		toString: null,
@@ -30,5 +30,5 @@ function TemporalMonad(bind, producer) {
 
 exports.isMonad = isMonad;
 exports.isFunction = isFunction;
-exports.Spatial = Spatial;
-exports.TemporalMonad = TemporalMonad;
+exports.Spatial = SpatialMonad;
+exports.Temporal = TemporalMonad;
