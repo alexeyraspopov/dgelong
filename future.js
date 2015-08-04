@@ -9,6 +9,7 @@ function run(tasks, value) {
 function pendingValue(producer) {
 	var isPending = true, value, pending = [];
 
+	// TODO: ensure that only one way will be invoked and only once
 	producer(function(result) {
 		isPending = false;
 		value = result;
