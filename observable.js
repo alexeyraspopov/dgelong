@@ -9,6 +9,11 @@ function bind(source, binder) {
 function Observable(producer) {
 	return {
 		map: function(morphism) {
+			/*return Observable(function(onNext) {
+				producer(function(value) {
+					onNext(morphism(value));
+				});
+			});*/
 			return bind(this, function(value, onNext) {
 				onNext(morphism(value));
 			});
