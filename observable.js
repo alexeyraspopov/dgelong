@@ -10,7 +10,7 @@ function Observable(producer) {
 	return {
 		map: function(morphism) {
 			/*return Observable(function(onNext) {
-				producer(function(value) {
+				return producer(function(value) {
 					onNext(morphism(value));
 				});
 			});*/
