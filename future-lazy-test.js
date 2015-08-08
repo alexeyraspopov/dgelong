@@ -1,10 +1,11 @@
 function Future(producer) {
 	return {
+		isMonad: true,
 		bind: function(right) {
 			return Future(function(resolve) {
 				producer(function(value) {
 					resolve(right(value));
-				})
+				});
 			});
 		},
 		fork: function(fn) {
