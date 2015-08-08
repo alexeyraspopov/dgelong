@@ -7,6 +7,7 @@ Set of useful first-class structures which allow to you get rid of your develope
  * **Flatten** by default.
  * **Minimal API sufrace area**.
  * **Immutable**.
+ * **Lazy evaluation**.
  * **Full interoperability** between all structures and JavaScript natives.
 
 ## Maybe
