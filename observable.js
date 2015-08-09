@@ -35,9 +35,11 @@ function Observable(producer) {
 				}
 			});
 		},
+		// TODO: should be in separate module
 		merge: function() {
 			// TODO: implement me...
 		},
+		// TODO: should be in separate module
 		concat: function() {
 			// TODO: implement me...
 		},
