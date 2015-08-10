@@ -1,59 +1,47 @@
-function bind(source, binder) {
-	return Observable(function(onNext, onError, onCompleted) {
-		return source.forEach(function(value) {
-			binder(value, onNext);
-		}, onError, onCompleted);
-	});
-}
+var compose = require('./compose');
 
 function Observable(producer) {
 	return {
 		map: function(morphism) {
-			/*return Observable(function(onNext) {
-				return producer(function(value) {
-					onNext(morphism(value));
-				});
-			});*/
-			return bind(this, function(value, onNext) {
-				onNext(morphism(value));
+			return Observable(function(onNext, onError, onCompleted) {
+				return producer(compose(onNext, morphism), onError, onCompleted);
 			});
 		},
 		filter: function(predicate) {
-			return bind(this, function(value, onNext) {
-				if (predicate(value)) onNext(value);
+			return Observable(function(onNext, onError, onCompleted) {
+				return producer(function(value) {
+					if (predicate(value)) onNext(value);
+				}, onError, onCompleted);
 			});
 		},
 		reduce: function(reducer, acc) {
 			var accNotDefined = typeof acc === 'undefined';
 
-			return bind(this, function(value, onNext) {
-				if (accNotDefined) {
-					acc = value;
-				} else {
-					acc = reducer(acc, value);
-					onNext(acc);
-				}
+			return Observable(function(onNext, onError, onCompleted) {
+				return producer(function(value) {
+					if (accNotDefined) {
+						acc = value;
+					} else {
+						acc = reducer(acc, value);
+						onNext(acc);
+					}
+				}, onError, onCompleted);
 			});
-		},
-		// TODO: should be in separate module
-		merge: function() {
-			// TODO: implement me...
-		},
-		// TODO: should be in separate module
-		concat: function() {
-			// TODO: implement me...
 		},
 		takeUntil: function() {
 			// TODO: implement me...
 		},
+		// TODO: move this to operators
 		unique: function() {
 			var cache;
 
-			return bind(this, function(value, onNext) {
-				if (typeof cache === 'undefined' || cache !== value) {
-					cache = value;
-					onNext(value);
-				}
+			return Observable(function(onNext, onError, onCompleted) {
+				return producer(function(value) {
+					if (typeof cache === 'undefined' || cache !== value) {
+						cache = value;
+						onNext(value);
+					}
+				}, onError, onCompleted);
 			});
 		},
 		forEach: function(onNext, onError, onCompleted) {
