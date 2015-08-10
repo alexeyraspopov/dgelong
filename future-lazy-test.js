@@ -1,11 +1,11 @@
+var compose = require('./compose');
+
 function Future(producer) {
 	return {
 		isMonad: true,
 		bind: function(right) {
 			return Future(function(resolve) {
-				producer(function(value) {
-					resolve(right(value));
-				});
+				producer(compose(resolve, right));
 			});
 		},
 		fork: function(fn) {
