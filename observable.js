@@ -1,5 +1,11 @@
 var compose = require('./compose');
 
+function filter(fn, predicate) {
+	return function(value) {
+		return predicate(value) ? fn(value) : null;
+	};
+}
+
 function Observable(producer) {
 	return {
 		map: function(morphism) {
@@ -9,9 +15,7 @@ function Observable(producer) {
 		},
 		filter: function(predicate) {
 			return Observable(function(onNext, onError, onCompleted) {
-				return producer(function(value) {
-					if (predicate(value)) onNext(value);
-				}, onError, onCompleted);
+				return producer(filter(onNext, predicate), onError, onCompleted);
 			});
 		},
 		reduce: function(reducer, acc) {
