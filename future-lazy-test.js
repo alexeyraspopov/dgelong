@@ -8,7 +8,7 @@ function Future(producer) {
 				producer(compose(resolve, right));
 			});
 		},
-		fork: function(fn) {
+		subscribe: function(fn) {
 			return producer(fn);
 		}
 	};
@@ -18,6 +18,6 @@ var a = Future(function(resolve) {
 	setTimeout(resolve, 1000, 13);
 });
 
-a.fork(function(v) {
+a.subscribe(function(v) {
 	console.log(v)
 });

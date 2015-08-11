@@ -7,6 +7,11 @@ function filter(fn, predicate) {
 }
 
 function Observable(producer) {
+	function forEach(onNext, onError, onCompleted) {
+		// TODO: wrap functions in scheduler
+		return producer(onNext, onError, onCompleted);
+	}
+
 	return {
 		map: function(morphism) {
 			return Observable(function(onNext, onError, onCompleted) {
@@ -19,9 +24,9 @@ function Observable(producer) {
 			});
 		},
 		reduce: function(reducer, acc) {
-			var accNotDefined = typeof acc === 'undefined';
-
 			return Observable(function(onNext, onError, onCompleted) {
+				var accNotDefined = typeof acc === 'undefined';
+
 				return producer(function(value) {
 					if (accNotDefined) {
 						acc = value;
@@ -35,10 +40,8 @@ function Observable(producer) {
 		takeUntil: function() {
 			// TODO: implement me...
 		},
-		forEach: function(onNext, onError, onCompleted) {
-			// TODO: wrap functions in scheduler
-			return producer(onNext, onError, onCompleted);
-		}
+		forEach: forEach,
+		subscribe: forEach
 	};
 }
 
