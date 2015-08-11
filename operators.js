@@ -2,7 +2,7 @@ var Observable = require('./observable');
 
 exports.merge = function merge(monads) {
 	return Observable(function(onNext) {
-		monads.forEach(function(monad) {
+		return monads.forEach(function(monad) {
 			if (monad.isAsync) {
 				monad.subscribe(onNext);
 			} else {
