@@ -35,19 +35,6 @@ function Observable(producer) {
 		takeUntil: function() {
 			// TODO: implement me...
 		},
-		// TODO: move this to operators
-		unique: function() {
-			var cache;
-
-			return Observable(function(onNext, onError, onCompleted) {
-				return producer(function(value) {
-					if (typeof cache === 'undefined' || cache !== value) {
-						cache = value;
-						onNext(value);
-					}
-				}, onError, onCompleted);
-			});
-		},
 		forEach: function(onNext, onError, onCompleted) {
 			// TODO: wrap functions in scheduler
 			return producer(onNext, onError, onCompleted);
