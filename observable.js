@@ -12,12 +12,15 @@ function Observable(producer) {
 		return producer(onNext, onError, onCompleted);
 	}
 
+	function bind(morphism) {
+		return Observable(function(onNext, onError, onCompleted) {
+			return producer(compose(onNext, morphism), onError, onCompleted);
+		});
+	}
+
 	return {
-		map: function(morphism) {
-			return Observable(function(onNext, onError, onCompleted) {
-				return producer(compose(onNext, morphism), onError, onCompleted);
-			});
-		},
+		map: bind,
+		bind: bind,
 		filter: function(predicate) {
 			return Observable(function(onNext, onError, onCompleted) {
 				return producer(filter(onNext, predicate), onError, onCompleted);
