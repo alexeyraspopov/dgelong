@@ -2,7 +2,7 @@ var compose = require('./compose');
 
 function filter(fn, predicate) {
 	return function(value) {
-		return predicate(value) ? fn(value) : null;
+		return predicate(value) ? fn(value) : void 0;
 	};
 }
 
