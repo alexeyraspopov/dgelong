@@ -14,6 +14,14 @@ function Future(producer) {
 	};
 }
 
+function Rejected() {
+	// TODO: implement me...
+}
+
+function Resolved() {
+	// TODO: implement me...
+}
+
 var a = Future(function(resolve) {
 	setTimeout(resolve, 1000, 13);
 });
