@@ -49,7 +49,8 @@ Set of useful first-class structures which allow to you get rid of your develope
 	}
 
 	fetch('/products')
-		.bind(products => ...);
+		.bind(products => ...)
+		.subscribe(showProducts);
 
 ## Observable
 
