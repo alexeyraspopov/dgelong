@@ -8,8 +8,8 @@ function Future(producer) {
 				producer(compose(resolve, right), compose(reject, left));
 			});
 		},
-		subscribe: function(fn) {
-			return producer(fn);
+		subscribe: function(onRight, onLeft) {
+			return producer(onRight, onLeft);
 		}
 	};
 }
