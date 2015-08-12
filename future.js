@@ -14,18 +14,18 @@ function Future(producer) {
 	};
 }
 
-function Rejected() {
-	// TODO: implement me...
+function Resolve(value) {
+	return Future(function(resolve) {
+		resolve(value);
+	});
 }
 
-function Resolved() {
-	// TODO: implement me...
+function Reject(error) {
+	return Future(function(resolve, reject) {
+		reject(error);
+	});
 }
 
-var a = Future(function(resolve) {
-	setTimeout(resolve, 1000, 13);
-});
-
-a.subscribe(function(v) {
-	console.log(v)
-});
+Future.Resolve = Resolve;
+Future.Reject = Reject;
+module.exports = Future;
