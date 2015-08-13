@@ -1,4 +1,5 @@
-var Observable = require('./observable');
+var Observable = require('./observable'),
+	Future = require('./future');
 
 exports.merge = function merge(monads) {
 	return Observable(function(onNext) {
@@ -34,5 +35,13 @@ exports.lift = function lift(fn, a, b) {
 		return b.bind(function(valueB) {
 			return fn(a, b);
 		});
+	});
+};
+
+exports.async = function async(generator) {
+	return Future(function(resolve, reject) {
+		var iterator = generator();
+
+		// TODO: implement me...
 	});
 };
