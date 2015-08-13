@@ -43,5 +43,7 @@ exports.async = function async(generator) {
 		var iterator = generator();
 
 		// TODO: implement me...
+		// TODO: throw error if Observable was used
+		// TODO: possibly add coroutine for Observables
 	});
 };
