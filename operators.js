@@ -28,3 +28,11 @@ exports.unique = function unique(observable) {
 		}, onError, onCompleted);
 	});
 };
+
+exports.lift = function lift(fn, a, b) {
+	return a.bind(function(valueA) {
+		return b.bind(function(valueB) {
+			return fn(a, b);
+		});
+	});
+};

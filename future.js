@@ -5,7 +5,7 @@ function Future(producer) {
 		isMonad: true,
 		bind: function(right, left) {
 			return Future(function(resolve, reject) {
-				producer(compose(resolve, right), compose(reject, left));
+				return producer(compose(resolve, right), compose(reject, left));
 			});
 		},
 		subscribe: function(onRight, onLeft) {
@@ -29,3 +29,15 @@ function Reject(error) {
 Future.Resolve = Resolve;
 Future.Reject = Reject;
 module.exports = Future;
+
+/*
+Future(function(resolve) {
+	var timer = setTimeout(resolve, 1000, 13);
+
+	return {
+		dispose: function() {
+			clearTimeout(timer);
+		}
+	}
+})
+*/
