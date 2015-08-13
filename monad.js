@@ -20,7 +20,9 @@ function TemporalMonad(bind, producer) {
 		isMonad: true,
 		toString: null,
 		valueOf: function() { return function(cb) {
-			return producer(cb);
+			return producer(cb, function(error) {
+				cb(void 0, error);
+			});
 		}; },
 		bind: function() {
 			// TODO: implement me...
