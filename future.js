@@ -29,15 +29,3 @@ function Reject(error) {
 Future.Resolve = Resolve;
 Future.Reject = Reject;
 module.exports = Future;
-
-/*
-Future(function(resolve) {
-	var timer = setTimeout(resolve, 1000, 13);
-
-	return {
-		dispose: function() {
-			clearTimeout(timer);
-		}
-	}
-})
-*/
