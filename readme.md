@@ -45,6 +45,13 @@ Set of useful first-class structures which allow to you get rid of your develope
 
 			xhr.onload = () => resolve(this.response);
 			xhr.onerror = () => reject(this);
+
+			xhr.open(url);
+			xhr.send(null);
+
+			return {
+				dispose() { xhr.abort(); }
+			};
 		});
 	}
 
