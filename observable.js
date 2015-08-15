@@ -6,6 +6,18 @@ function filter(fn, predicate) {
 	};
 }
 
+function reducify(reducer, next, acc) {
+	return function(value) {
+		// TODO: check native .reduce implementation
+		if (acc === void 0) {
+			acc = value;
+		} else {
+			acc = reducer(acc, value);
+			next(acc);
+		}
+	};
+}
+
 function Observable(producer) {
 	function forEach(onNext, onError, onCompleted) {
 		// TODO: wrap functions in scheduler
@@ -28,16 +40,7 @@ function Observable(producer) {
 		},
 		reduce: function(reducer, acc) {
 			return Observable(function(onNext, onError, onCompleted) {
-				var accNotDefined = typeof acc === 'undefined';
-
-				return producer(function(value) {
-					if (accNotDefined) {
-						acc = value;
-					} else {
-						acc = reducer(acc, value);
-						onNext(acc);
-					}
-				}, onError, onCompleted);
+				return producer(reducify(reducer, onNext, acc), onError, onCompleted);
 			});
 		},
 		takeUntil: function() {
