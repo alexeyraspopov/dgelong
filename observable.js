@@ -25,7 +25,7 @@ function Observable(producer) {
 	}
 
 	function bind(morphism) {
-		return Observable(function(onNext, onError, onCompleted) {
+		return Observable(function MappedObservable(onNext, onError, onCompleted) {
 			return producer(compose(onNext, morphism), onError, onCompleted);
 		});
 	}
@@ -34,12 +34,12 @@ function Observable(producer) {
 		map: bind,
 		bind: bind,
 		filter: function(predicate) {
-			return Observable(function(onNext, onError, onCompleted) {
+			return Observable(function FilteredObservable(onNext, onError, onCompleted) {
 				return producer(filter(onNext, predicate), onError, onCompleted);
 			});
 		},
 		reduce: function(reducer, acc) {
-			return Observable(function(onNext, onError, onCompleted) {
+			return Observable(function ReducedObservable(onNext, onError, onCompleted) {
 				return producer(reducify(reducer, onNext, acc), onError, onCompleted);
 			});
 		},
