@@ -11,7 +11,8 @@ function SpatialMonad(bind, value) {
 		isMonad: true,
 		toString: null,
 		valueOf: function() { return value; },
-		bind: function(a, b) { return bind(value, a, b); }
+		bind: function(a, b) { return bind(value, a, b); },
+		lift: function(a, b) { return bind(value, a, b).valueOf(); }
 	};
 }
 
