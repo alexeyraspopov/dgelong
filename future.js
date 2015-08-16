@@ -16,13 +16,13 @@ function Future(producer) {
 
 function Resolve(value) {
 	return Future(function(resolve) {
-		resolve(value);
+		return resolve(value);
 	});
 }
 
 function Reject(error) {
 	return Future(function(resolve, reject) {
-		reject(error);
+		return reject(error);
 	});
 }
 
