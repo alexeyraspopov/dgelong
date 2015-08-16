@@ -1,5 +1,5 @@
 module.exports = function compose(f, g) {
-	return function(a) {
+	return function composed(a) {
 		return f(g(a));
 	};
 };
