@@ -1,7 +1,4 @@
 *
 !readme.md
 !package.json
-!index.js
-!maybe.js
-!monad.js
-!either.js
+!*.js
