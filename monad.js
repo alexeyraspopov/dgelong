@@ -27,6 +27,9 @@ function TemporalMonad(bind, producer) {
 		}; },
 		bind: function() {
 			// TODO: implement me...
+		},
+		subscribe: function() {
+			// TODO: implement me...
 		}
 	};
 }
