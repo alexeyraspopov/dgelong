@@ -10,6 +10,15 @@ Set of useful first-class structures which allow to you get rid of your develope
  * **Lazy evaluation**.
  * **Full interoperability** between all structures and JavaScript natives.
 
+## Time & Space
+
+ - Time (`bind`, `subscribe`)
+   - Future (async task as value)
+   - Observable (async lists)
+ - Space (`bind`, `lift`)
+   - Maybe (null-safe computations)
+   - Either (two-way composition)
+
 ## Maybe
 
 	function square(n) {
