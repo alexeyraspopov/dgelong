@@ -1,4 +1,5 @@
-var compose = require('./compose');
+var Monad = require('./monad'),
+	compose = require('./compose');
 
 function filter(fn, predicate) {
 	return function(value) {
@@ -18,6 +19,12 @@ function reducify(reducer, next, acc) {
 	};
 }
 
+function JustObservable(monad) {
+	return Observable(function(onNext, onError, onCompleted) {
+		return producer.bind(onCompleted, onError);
+	});
+}
+
 function Observable(producer) {
 	function forEach(onNext, onError, onCompleted) {
 		// TODO: wrap functions in scheduler
@@ -30,7 +37,8 @@ function Observable(producer) {
 		});
 	}
 
-	return {
+	return Monad.isMonad(producer) ? JustObservable(producer) : {
+		isMonad: true,
 		map: bind,
 		bind: bind,
 		filter: function(predicate) {
