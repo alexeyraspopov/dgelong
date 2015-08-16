@@ -43,9 +43,6 @@ function Observable(producer) {
 				return producer(reducify(reducer, onNext, acc), onError, onCompleted);
 			});
 		},
-		takeUntil: function() {
-			// TODO: implement me...
-		},
 		forEach: forEach,
 		subscribe: forEach
 	};
