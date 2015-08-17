@@ -10,6 +10,7 @@ function filter(fn, predicate) {
 function reducify(reducer, next, acc) {
 	return function(value) {
 		// TODO: check native .reduce implementation
+		// TODO: compare with Rx's version
 		if (acc === void 0) {
 			acc = value;
 		} else {
@@ -21,7 +22,7 @@ function reducify(reducer, next, acc) {
 
 function JustObservable(monad) {
 	return Observable(function(onNext, onError, onCompleted) {
-		return producer.bind(onCompleted, onError);
+		return monad.bind(onCompleted, onError);
 	});
 }
 
