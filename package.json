@@ -2,9 +2,10 @@
   "name": "dgelong",
   "version": "0.0.7",
   "description": "A JavaScript implementation of useful monads",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel/register tests/*.js"
+    "test": "mocha --compilers js:babel/register tests/*.js",
+    "build": "babel *.js --out-dir lib"
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
