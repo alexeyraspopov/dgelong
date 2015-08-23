@@ -10,6 +10,22 @@ Set of useful first-class structures which allow to you get rid of your develope
  * **Lazy evaluation**.
  * **Full interoperability** between all structures and JavaScript natives.
 
+## Install
+
+	npm install dgelong --save
+
+## Usage
+
+*Note: Babel is used for transpiling Dgelong's sources.*
+
+### ECMAScript 5
+
+TBD
+
+### ECMAScript 6
+
+TBD
+
 ## Time & Space
 
  - Time (`bind`, `subscribe`)
