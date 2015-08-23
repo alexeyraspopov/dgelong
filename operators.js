@@ -3,13 +3,7 @@ var Observable = require('./observable'),
 
 export function merge(monads) {
 	return Observable(function(onNext) {
-		return monads.forEach(function(monad) {
-			if (monad.isAsync) {
-				monad.subscribe(onNext);
-			} else {
-				monad.bind(onNext);
-			}
-		});
+		return monads.forEach(monad => monad.isAsync ? monad.subscribe(onNext) : monad.bind(onNext));
 	});
 }
 
