@@ -1,4 +1,16 @@
-var Monad = require('./monad');
+import * as Monad from './monad';
+
+export default function Maybe(value) {
+	return isNullable(value) ? Nothing() : Just(value);
+}
+
+export function Just(value) {
+	return Monad.isMonad(value) ? value : Monad.SpatialMonad(bindJust, value);
+}
+
+export function Nothing() {
+	return Monad.SpatialMonad(bindNothing);
+}
 
 function bindJust(value, right) {
 	return Monad.isFunction(right) ? Just(right(value)) : Just(value);
@@ -7,22 +19,6 @@ function bindJust(value, right) {
 function bindNothing(value, right, left) {
 	return Monad.isFunction(left) ? Just(left()) : Nothing();
 }
-
-function Just(value) {
-	return Monad.isMonad(value) ? value : Monad.Spatial(bindJust, value);
-}
-
-function Nothing() {
-	return Monad.Spatial(bindNothing);
-}
-
-function Maybe(value) {
-	return isNullable(value) ? Nothing() : Just(value);
-}
-
-Maybe.Just = Just;
-Maybe.Nothing = Nothing;
-module.exports = Maybe;
 
 function isNullable(value){
 	return value === void 0 || value === null;

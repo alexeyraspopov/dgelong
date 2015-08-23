@@ -3,7 +3,7 @@ var compose = require('./compose'),
 
 const ERROR_MSG = 'function can be called only once';
 
-function Future(producer) {
+export default function Future(producer) {
 	return {
 		isMonad: true,
 		bind: function(right, left) {
@@ -17,18 +17,10 @@ function Future(producer) {
 	};
 }
 
-function Resolve(value) {
-	return Future(function(resolve) {
-		return resolve(value);
-	});
+export function Resolve(value) {
+	return Future(resolve => resolve(value));
 }
 
-function Reject(error) {
-	return Future(function(resolve, reject) {
-		return reject(error);
-	});
+export function Reject(error) {
+	return Future((resolve, reject) => reject(error));
 }
-
-Future.Resolve = Resolve;
-Future.Reject = Reject;
-module.exports = Future;

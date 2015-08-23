@@ -1,7 +1,7 @@
 var Observable = require('./observable'),
 	Future = require('./future');
 
-exports.merge = function merge(monads) {
+export function merge(monads) {
 	return Observable(function(onNext) {
 		return monads.forEach(function(monad) {
 			if (monad.isAsync) {
@@ -11,13 +11,13 @@ exports.merge = function merge(monads) {
 			}
 		});
 	});
-};
+}
 
-exports.concat = function concat(monads) {};
+export function concat(monads) {}
 
-exports.combine = function combine(monads) {};
+export function combine(monads) {}
 
-exports.unique = function unique(observable) {
+export function unique(observable) {
 	return Observable(function(onNext, onError, onCompleted) {
 		var cache;
 
@@ -28,9 +28,9 @@ exports.unique = function unique(observable) {
 			}
 		}, onError, onCompleted);
 	});
-};
+}
 
-exports.async = function async(generator) {
+export function async(generator) {
 	return Future(function(resolve, reject) {
 		var iterator = generator();
 
@@ -38,4 +38,4 @@ exports.async = function async(generator) {
 		// TODO: throw error if Observable was used
 		// TODO: possibly add coroutine for Observables
 	});
-};
+}

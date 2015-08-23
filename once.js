@@ -1,4 +1,4 @@
-module.exports = function once(fn, message) {
+export default function once(fn, message) {
 	return function onetime(a) {
 		var result;
 
@@ -13,4 +13,4 @@ module.exports = function once(fn, message) {
 			throw new Error(message);
 		}
 	};
-};
+}

@@ -1,6 +1,6 @@
-var Monad = require('./monad'),
-	compose = require('./compose'),
-	once = require('./once');
+import * as Monad from './monad';
+import compose from './compose';
+import once from './once';
 
 function filter(fn, predicate) {
 	return function(value) {
@@ -27,7 +27,7 @@ function JustObservable(monad) {
 	});
 }
 
-function Observable(producer) {
+export default function Observable(producer) {
 	function forEach(onNext, onError, onCompleted) {
 		// TODO: wrap functions in scheduler
 		return producer(onNext, onError, onCompleted);
@@ -57,5 +57,3 @@ function Observable(producer) {
 		subscribe: forEach
 	};
 }
-
-module.exports = Observable;
