@@ -1,4 +1,7 @@
-var compose = require('./compose');
+var compose = require('./compose'),
+	once = require('./once');
+
+const ERROR_MSG = 'function can be called only once';
 
 function Future(producer) {
 	return {
@@ -9,7 +12,7 @@ function Future(producer) {
 			});
 		},
 		subscribe: function(onRight, onLeft) {
-			return producer(onRight, onLeft);
+			return producer(once(onRight, ERROR_MSG), once(onLeft, ERROR_MSG));
 		}
 	};
 }
