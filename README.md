@@ -2,7 +2,7 @@
 
 ***It's not ready for production. Stay tuned.***
 
-Set of useful first-class structures which allow to you get rid of your developer's pain.
+Set of useful first-class structures which allow you to get rid of your developer's pain.
 
  * **Flatten** by default.
  * **Minimal API sufrace area**.
