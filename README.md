@@ -100,4 +100,4 @@ TBD
 
 ## License
 
-MIT (c) Alexey Raspopov
+[MIT (c) Alexey Raspopov](./LICENSE)
