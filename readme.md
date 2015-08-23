@@ -16,7 +16,7 @@ Set of useful first-class structures which allow to you get rid of your develope
 
 ## Usage
 
-*Note: Babel is used for transpiling Dgelong's sources.*
+*Note: [Babel](https://babeljs.io/) is used for transpiling Dgelong's sources.*
 
 ### ECMAScript 5
 
