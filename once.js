@@ -1,0 +1,3 @@
+module.exports = function once(fn) {
+	// TODO: implement me...
+};
