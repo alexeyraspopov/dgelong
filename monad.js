@@ -1,3 +1,6 @@
+const SPATIAL = 'SPATIAL',
+	TEMPORAL = 'TEMPORAL';
+
 function isMonad(value) {
 	return value && value.isMonad;
 }
@@ -8,6 +11,7 @@ function isFunction(value) {
 
 function SpatialMonad(bind, value) {
 	return {
+		type: SPATIAL,
 		isMonad: true,
 		toString: null,
 		valueOf: function() { return value; },
@@ -18,6 +22,7 @@ function SpatialMonad(bind, value) {
 
 function TemporalMonad(bind, producer) {
 	return {
+		type: TEMPORAL,
 		isMonad: true,
 		toString: null,
 		valueOf: function() { return function(cb) {
