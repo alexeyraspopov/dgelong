@@ -9,6 +9,8 @@ module.exports = function once(fn, message) {
 			return result;
 		}
 
-		throw new Error(message);
+		if (message !== void 0) {
+			throw new Error(message);
+		}
 	};
 };
