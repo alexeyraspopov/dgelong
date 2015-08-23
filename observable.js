@@ -1,5 +1,6 @@
 var Monad = require('./monad'),
-	compose = require('./compose');
+	compose = require('./compose'),
+	once = require('./once');
 
 function filter(fn, predicate) {
 	return function(value) {
@@ -34,7 +35,7 @@ function Observable(producer) {
 
 	function bind(morphism) {
 		return Observable(function MappedObservable(onNext, onError, onCompleted) {
-			return producer(compose(onNext, morphism), onError, onCompleted);
+			return producer(compose(onNext, morphism), onError, once(onCompleted, 'function can be called only once'));
 		});
 	}
 
