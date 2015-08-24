@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/alexeyraspopov/dgelong",
   "devDependencies": {
-    "babel": "^5.5.8",
+    "babel": "~5.8.21",
     "expect.js": "^0.3.1",
     "mocha": "^2.2.5",
     "sinon": "^1.15.3"
