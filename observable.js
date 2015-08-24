@@ -40,6 +40,7 @@ export default function Observable(producer) {
 	}
 
 	return isMonad(producer) ? JustObservable(producer) : {
+		// TODO: use types instead of flags
 		isMonad: true,
 		map: bind,
 		bind: bind,

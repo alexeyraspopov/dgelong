@@ -1,8 +1,10 @@
 const SPATIAL = 'SPATIAL',
 	TEMPORAL = 'TEMPORAL';
 
+export var Types = {SPATIAL, TEMPORAL};
+
 export function isMonad(value) {
-	return value && value.isMonad;
+	return value && value.type in Types;
 }
 
 export function isFunction(value) {
@@ -12,7 +14,6 @@ export function isFunction(value) {
 export function SpatialMonad(bind, value) {
 	return {
 		type: SPATIAL,
-		isMonad: true,
 		toString: null,
 		valueOf: () => value,
 		bind: (a, b) => bind(value, a, b),
@@ -23,7 +24,6 @@ export function SpatialMonad(bind, value) {
 export function TemporalMonad(bind, producer) {
 	return {
 		type: TEMPORAL,
-		isMonad: true,
 		toString: null,
 		valueOf: function() { return function(cb) {
 			return producer(cb, function(error) {
