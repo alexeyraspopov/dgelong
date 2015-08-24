@@ -1,8 +1,6 @@
 // TODO: check how stacktrace looks like
 // TODO: play with Rx
 // TODO: rules for resolve, reject, onNext, onError, onCompleted
-// TODO: test package download and prepublish
-// TODO: what if I'll link package to `dgelong-es6` in npm with different preinstall script? or, it's much easier to create `dgelong-es5`
 
 import Maybe, {Just, Nothing} from './maybe';
 import Either, {Success, Failure} from './either';
