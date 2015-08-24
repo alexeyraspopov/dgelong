@@ -1,4 +1,5 @@
 *
-!readme.md
+!README.md
+!LICENSE
 !package.json
 !lib/*.js
