@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Dgelong by alexeyraspopov</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Dgelong</h1>
+      <h2 class="project-tagline">A JavaScript Implementation of Useful First-class Citizens</h2>
+      <a href="https://github.com/alexeyraspopov/dgelong" class="btn">View on GitHub</a>
+      <a href="https://github.com/alexeyraspopov/dgelong/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alexeyraspopov/dgelong/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="dgelong" class="anchor" href="#dgelong" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dgelong</h1>
+
+<p><strong><em>It's not ready for production. Stay tuned.</em></strong></p>
+
+<p>Set of useful first-class structures which allow you to get rid of your developer's pain.</p>
+
+<ul>
+<li>
+<strong>Flatten</strong> by default.</li>
+<li>
+<strong>Minimal API sufrace area</strong>.</li>
+<li>
+<strong>Immutable</strong>.</li>
+<li>
+<strong>Lazy evaluation</strong>.</li>
+<li>
+<strong>Full interoperability</strong> between all structures and JavaScript natives.</li>
+</ul>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<pre><code>npm install dgelong --save
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p><em>Note: <a href="https://babeljs.io/">Babel</a> is used for transpiling Dgelong's sources.</em></p>
+
+<h3>
+<a id="ecmascript-5" class="anchor" href="#ecmascript-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 5</h3>
+
+<p>TBD</p>
+
+<h3>
+<a id="ecmascript-6" class="anchor" href="#ecmascript-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 6</h3>
+
+<p>TBD</p>
+
+<h2>
+<a id="time--space" class="anchor" href="#time--space" aria-hidden="true"><span class="octicon octicon-link"></span></a>Time &amp; Space</h2>
+
+<ul>
+<li>Time (<code>bind</code>, <code>subscribe</code>)
+
+<ul>
+<li>Future (async task as value)</li>
+<li>Observable (async lists)</li>
+</ul>
+</li>
+<li>Space (<code>bind</code>, <code>lift</code>)
+
+<ul>
+<li>Maybe (null-safe computations)</li>
+<li>Either (two-way composition)</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="maybe" class="anchor" href="#maybe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maybe</h2>
+
+<pre><code>function square(n) {
+    return n * n;
+}
+
+function isEven(n) {
+    return n % 2 ? Nothing() : Just(n);
+}
+
+Just(5)
+    .bind(square) // returns Just(25)
+    .bind(isEven) // returns Nothing()
+    .bind(alert); // won't work
+</code></pre>
+
+<h2>
+<a id="either" class="anchor" href="#either" aria-hidden="true"><span class="octicon octicon-link"></span></a>Either</h2>
+
+<pre><code>function validateUserPassword(password) {
+    if (password.length &lt; 10) return Failure('Password too short');
+    if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
+
+    return Success(password);
+}
+
+validateUserPassword('boo')
+    .bind(savePassword, showError);
+</code></pre>
+
+<h2>
+<a id="future" class="anchor" href="#future" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future</h2>
+
+<pre><code>function fetch(url) {
+    return Future(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onload = () =&gt; resolve(this.response);
+        xhr.onerror = () =&gt; reject(this);
+
+        xhr.open(url);
+        xhr.send(null);
+
+        return {
+            dispose() { xhr.abort(); }
+        };
+    });
+}
+
+fetch('/products')
+    .bind(products =&gt; ...)
+    .subscribe(showProducts);
+</code></pre>
+
+<h2>
+<a id="observable" class="anchor" href="#observable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Observable</h2>
+
+<pre><code>var clicks = Observable(function(next){
+    document.addEventListener('click', next);
+
+    return {
+        dispose(){ document.removeEventListener('click', next); }
+    };
+});
+
+clicks
+    .map(event =&gt; event.target)
+    .forEach(element =&gt; ...);
+</code></pre>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="./LICENSE">MIT (c) Alexey Raspopov</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/alexeyraspopov/dgelong">Dgelong</a> is maintained by <a href="https://github.com/alexeyraspopov">alexeyraspopov</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
