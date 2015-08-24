@@ -1,7 +1,7 @@
-import compose from './lib/compose';
-import onetime from './lib/onetime';
+import compose from "./lib/compose";
+import onetime from "./lib/onetime";
 
-const ERROR_MSG = 'function can be called only once';
+const ERROR_MSG = "Function can be called only once";
 
 export default function Future(producer) {
 	return {

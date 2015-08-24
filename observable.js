@@ -1,6 +1,6 @@
-import {isMonad} from './lib/monad';
-import compose from './lib/compose';
-import onetime from './lib/onetime';
+import {isMonad} from "./lib/monad";
+import compose from "./lib/compose";
+import onetime from "./lib/onetime";
 
 function filter(fn, predicate) {
 	return function(value) {
@@ -35,7 +35,7 @@ export default function Observable(producer) {
 
 	function bind(morphism) {
 		return Observable(function MappedObservable(onNext, onError, onCompleted) {
-			return producer(compose(onNext, morphism), onError, onetime(onCompleted, 'function can be called only once'));
+			return producer(compose(onNext, morphism), onError, onetime(onCompleted, "Function can be called only once"));
 		});
 	}
 
