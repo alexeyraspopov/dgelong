@@ -12,7 +12,13 @@ Set of useful first-class structures which allow you to get rid of your develope
 
 ## Install
 
+For ECMAScript 6 users
+
 	npm install dgelong --save
+
+For ECMAScript 5 (or less) users
+
+	npm install dgelong-es5 --save
 
 ## Usage
 
@@ -24,9 +30,9 @@ Set of useful first-class structures which allow you to get rid of your develope
 
 You can start easily with project [Babel](https://babeljs.io/).
 
-If you don't want to use Babel or **ECMAScript 6** I recommend you to use Dgelong only from entry point:
+If you don't want to use Babel or **ECMAScript 6** I recommend you to [install](https://github.com/alexeyraspopov/dgelong-es5) `dgelong-es5`:
 
-	var Dgelong = require('dgelong');
+	var Dgelong = require('dgelong-es5');
 
 So then you'll be able to use Dgelong's structures:
 
