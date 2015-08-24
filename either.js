@@ -1,4 +1,4 @@
-import {isMonad, isFunction, SpatialMonad} from './monad';
+import {isMonad, isFunction, SpatialMonad} from './lib/monad';
 
 export default function Either(fn) {
 	try {

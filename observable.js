@@ -1,6 +1,6 @@
-import {isMonad} from './monad';
-import compose from './compose';
-import onetime from './onetime';
+import {isMonad} from './lib/monad';
+import compose from './lib/compose';
+import onetime from './lib/onetime';
 
 function filter(fn, predicate) {
 	return function(value) {

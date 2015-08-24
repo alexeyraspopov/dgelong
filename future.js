@@ -1,5 +1,5 @@
-import compose from './compose';
-import onetime from './onetime';
+import compose from './lib/compose';
+import onetime from './lib/onetime';
 
 const ERROR_MSG = 'function can be called only once';
 
