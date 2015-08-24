@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel/register tests/*.js",
     "build": "babel *.js --out-dir lib",
-    "preinstall": "babel *.js --out-dir lib"
+    "preinstall": "babel lib/*.js --out-dir ."
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
