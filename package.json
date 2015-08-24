@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests/*.js",
-    "build": "babel *.js --out-dir lib",
-    "preinstall": "babel lib/*.js --out-dir ."
+    "build": "babel lib --out-dir $PWD",
+    "clean": "rm -rf *.js",
+    "preinstall": "npm run build"
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
