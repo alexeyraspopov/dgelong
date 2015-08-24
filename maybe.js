@@ -1,23 +1,23 @@
-import * as Monad from './monad';
+import {isMonad, isFunction, SpatialMonad} from './monad';
 
 export default function Maybe(value) {
 	return isNullable(value) ? Nothing() : Just(value);
 }
 
 export function Just(value) {
-	return Monad.isMonad(value) ? value : Monad.SpatialMonad(bindJust, value);
+	return isMonad(value) ? value : SpatialMonad(bindJust, value);
 }
 
 export function Nothing() {
-	return Monad.SpatialMonad(bindNothing);
+	return SpatialMonad(bindNothing);
 }
 
 function bindJust(value, right) {
-	return Monad.isFunction(right) ? Just(right(value)) : Just(value);
+	return isFunction(right) ? Just(right(value)) : Just(value);
 }
 
 function bindNothing(value, right, left) {
-	return Monad.isFunction(left) ? Just(left()) : Nothing();
+	return isFunction(left) ? Just(left()) : Nothing();
 }
 
 function isNullable(value){

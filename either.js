@@ -1,4 +1,4 @@
-import * as Monad from './Monad';
+import {isMonad, isFunction, SpatialMonad} from './monad';
 
 export default function Either(fn) {
 	try {
@@ -9,17 +9,17 @@ export default function Either(fn) {
 }
 
 export function Success(value) {
-	return Monad.isMonad(value) ? value : Monad.SpatialMonad(bindSuccess, value);
+	return isMonad(value) ? value : SpatialMonad(bindSuccess, value);
 }
 
 export function Failure(value) {
-	return Monad.isMonad(value) ? value : Monad.SpatialMonad(bindFailure, value);
+	return isMonad(value) ? value : SpatialMonad(bindFailure, value);
 }
 
 function bindSuccess(value, right) {
-	return Monad.isFunction(right) ? Success(right(value)) : Success(value);
+	return isFunction(right) ? Success(right(value)) : Success(value);
 }
 
 function bindFailure(value, right, left) {
-	return Monad.isFunction(left) ? Success(left(value)) : Failure(value);
+	return isFunction(left) ? Success(left(value)) : Failure(value);
 }

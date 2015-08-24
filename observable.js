@@ -1,4 +1,4 @@
-import * as Monad from './monad';
+import {isMonad} from './monad';
 import compose from './compose';
 import once from './once';
 
@@ -39,7 +39,7 @@ export default function Observable(producer) {
 		});
 	}
 
-	return Monad.isMonad(producer) ? JustObservable(producer) : {
+	return isMonad(producer) ? JustObservable(producer) : {
 		isMonad: true,
 		map: bind,
 		bind: bind,
