@@ -1,7 +1,7 @@
 {
   "name": "dgelong",
-  "version": "0.0.7",
-  "description": "A JavaScript implementation of useful monads",
+  "version": "0.0.8",
+  "description": "A JavaScript Implementation of Useful First-class Citizens",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests/*.js"
