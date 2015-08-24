@@ -3,7 +3,9 @@
 // TODO: rules for resolve, reject, onNext, onError, onCompleted
 // TODO: test package download and prepublish
 
-export Maybe from './maybe';
-export Either from './either';
-export Future from './future';
-export Observable from './observable';
+import * as Maybe from './maybe';
+import * as Either from './either';
+import * as Future from './future';
+import * as Observable from './observable';
+
+export default { Maybe, Either, Future, Observable };
