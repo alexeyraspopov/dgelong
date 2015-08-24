@@ -1,4 +1,3 @@
-// TODO: check how stacktrace looks like
 // TODO: play with Rx
 // TODO: rules for resolve, reject, onNext, onError, onCompleted
 
