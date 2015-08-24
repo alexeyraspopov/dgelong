@@ -24,7 +24,7 @@ Set of useful first-class structures which allow you to get rid of your develope
 
 You can start easily with project [Babel](https://babeljs.io/).
 
-If you don't want to use Babel or ECMAScript 6 I recommend you to use dgelong only from entry point:
+If you don't want to use Babel or **ECMAScript 6** I recommend you to use Dgelong only from entry point:
 
 	var Dgelong = require('dgelong');
 
@@ -39,6 +39,7 @@ So then you'll be able to use Dgelong's structures:
 You're able to import particular structures:
 
 	import Either, {Success, Failure} from 'dgelong/either';
+	import Maybe from 'dgelong/maybe';
 	import compose from 'dgelong/compose';
 
 ## Time & Space
