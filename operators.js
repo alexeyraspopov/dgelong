@@ -1,5 +1,5 @@
-var Observable = require('./observable'),
-	Future = require('./future');
+import Observable from './observable';
+import Future from './future';
 
 export function merge(monads) {
 	return Observable(function(onNext) {

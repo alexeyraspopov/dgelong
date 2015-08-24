@@ -1,5 +1,5 @@
-var compose = require('./compose'),
-	once = require('./once');
+import compose from './compose';
+import once from './once';
 
 const ERROR_MSG = 'function can be called only once';
 
