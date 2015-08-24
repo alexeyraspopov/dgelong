@@ -20,11 +20,26 @@ Set of useful first-class structures which allow you to get rid of your develope
 
 ### ECMAScript 5
 
-TBD
+*Dgelong author highly recommends you to start using ECMAScript 6 in your project.*
+
+You can start easily with project [Babel](https://babeljs.io/).
+
+If you don't want to use Babel or ECMAScript 6 I recommend you to use dgelong only from entry point:
+
+	var Dgelong = require('dgelong');
+
+So then you'll be able to use Dgelong's structures:
+
+	var Maybe = Dgelong.Maybe,
+		Just = Dgelong.Just,
+		...;
 
 ### ECMAScript 6
 
-TBD
+You're able to import particular structures:
+
+	import Either, {Success, Failure} from 'dgelong/either';
+	import compose from 'dgelong/compose';
 
 ## Time & Space
 
