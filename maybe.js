@@ -20,6 +20,6 @@ function bindNothing(value, right, left) {
 	return isFunction(left) ? Just(left()) : Nothing();
 }
 
-function isNullable(value){
+function isNullable(value) {
 	return value === void 0 || value === null;
 }
