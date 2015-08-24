@@ -4,10 +4,7 @@
   "description": "A JavaScript implementation of useful monads",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel/register tests/*.js",
-    "build": "babel lib --out-dir $PWD",
-    "clean": "rm -rf *.js",
-    "preinstall": "npm run build"
+    "test": "mocha --compilers js:babel/register tests/*.js"
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
