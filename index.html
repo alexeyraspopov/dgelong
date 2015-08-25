@@ -39,7 +39,14 @@
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
 
+<p>For ECMAScript 6 users</p>
+
 <pre><code>npm install dgelong --save
+</code></pre>
+
+<p>For ECMAScript 5 (or less) users</p>
+
+<pre><code>npm install dgelong-es5 --save
 </code></pre>
 
 <h2>
@@ -50,12 +57,31 @@
 <h3>
 <a id="ecmascript-5" class="anchor" href="#ecmascript-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 5</h3>
 
-<p>TBD</p>
+<p><em>Dgelong author highly recommends you to start using ECMAScript 6 in your project.</em></p>
+
+<p>You can start easily with project <a href="https://babeljs.io/">Babel</a>.</p>
+
+<p>If you don't want to use Babel or <strong>ECMAScript 6</strong> I recommend you to <a href="https://github.com/alexeyraspopov/dgelong-es5">install</a> <code>dgelong-es5</code>:</p>
+
+<pre><code>var Dgelong = require('dgelong-es5');
+</code></pre>
+
+<p>So then you'll be able to use Dgelong's structures:</p>
+
+<pre><code>var Maybe = Dgelong.Maybe,
+    Just = Dgelong.Just,
+    ...;
+</code></pre>
 
 <h3>
 <a id="ecmascript-6" class="anchor" href="#ecmascript-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 6</h3>
 
-<p>TBD</p>
+<p>You're able to import particular structures:</p>
+
+<pre><code>import Either, {Success, Failure} from 'dgelong/either';
+import Maybe from 'dgelong/maybe';
+import compose from 'dgelong/compose';
+</code></pre>
 
 <h2>
 <a id="time--space" class="anchor" href="#time--space" aria-hidden="true"><span class="octicon octicon-link"></span></a>Time &amp; Space</h2>
