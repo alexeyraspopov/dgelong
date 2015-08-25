@@ -1,6 +1,7 @@
 // TODO: play with Rx
 // TODO: rules for resolve, reject, onNext, onError, onCompleted
 // TODO: check .lift(null, fn)
+// TODO: create es5.js and browser.js on preinstall/prepublish
 
 import Maybe, {Just, Nothing} from "./maybe";
 import Either, {Success, Failure} from "./either";
