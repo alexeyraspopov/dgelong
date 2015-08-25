@@ -3,9 +3,7 @@ import compose from "./lib/compose";
 import onetime from "./lib/onetime";
 
 function filter(fn, predicate) {
-	return function(value) {
-		return predicate(value) ? fn(value) : void 0;
-	};
+	return value => predicate(value) ? fn(value) : void 0;
 }
 
 function reducify(reducer, next, acc) {
