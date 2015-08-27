@@ -24,15 +24,21 @@ Set of useful first-class structures which allow you to get rid of your develope
 
 You can start easily with project [Babel](https://babeljs.io/).
 
-If you don't want to use Babel or **ECMAScript 6** I recommend you to [install](https://github.com/alexeyraspopov/dgelong-es5) `dgelong-es5`:
+If you don't want to use Babel or **ECMAScript 6** I recommend you to require main file only:
 
-	var Dgelong = require('dgelong/es5');
+	var Dgelong = require('dgelong');
 
 So then you'll be able to use Dgelong's structures:
 
 	var Maybe = Dgelong.Maybe,
 		Just = Dgelong.Just,
 		...;
+
+This file is using AMD pattern so you're able to import it directly in browser:
+
+	<script src="node_modules/dgelong/bundle.js"></script>
+
+Which will provide you `Dgelong` global variable.
 
 ### ECMAScript 6
 
