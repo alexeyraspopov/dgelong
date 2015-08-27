@@ -10,7 +10,7 @@ import Observable from "./observable";
 import * as Monad from "./lib/monad";
 import compose from "./lib/compose";
 import onetime from "./lib/onetime";
-import operators from "/lib/operators";
+import operators from "./lib/operators";
 
 export default {
 	Maybe,
