@@ -46,7 +46,7 @@ You're able to import particular structures:
 
 	import Either, {Success, Failure} from 'dgelong/either';
 	import Maybe from 'dgelong/maybe';
-	import compose from 'dgelong/compose';
+	import compose from 'dgelong/lib/compose';
 
 ## Time & Space
 
