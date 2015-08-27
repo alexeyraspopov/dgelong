@@ -34,7 +34,7 @@ So then you'll be able to use Dgelong's structures:
 		Just = Dgelong.Just,
 		...;
 
-This file is using AMD pattern so you're able to import it directly in browser:
+This file is using UMD pattern so you're able to import it directly in browser:
 
 	<script src="node_modules/dgelong/bundle.js"></script>
 
