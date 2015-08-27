@@ -1,11 +1,11 @@
 {
   "name": "dgelong",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A JavaScript Implementation of Useful First-class Citizens",
   "main": "bundle.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests/*.js",
-    "preinstall": "browserify -r ./index.js -s Dgelong -t babelify > bundle.js"
+    "prepublish": "browserify -r ./index.js -s Dgelong -t babelify > bundle.js"
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
