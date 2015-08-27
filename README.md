@@ -1,5 +1,7 @@
 # Dgelong
 
+[![Join the chat at https://gitter.im/alexeyraspopov/dgelong](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alexeyraspopov/dgelong?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ***It's not ready for production. Stay tuned.***
 
 Set of useful first-class structures which allow you to get rid of your developer's pain.
