@@ -14,6 +14,10 @@ Set of useful first-class structures which allow you to get rid of your develope
 
 	npm install dgelong --save
 
+## Motivation
+
+I've read [Fantasy Land](https://github.com/fantasyland/fantasy-land) specification. I don't want make another implementation that requires Ph.D in Math. The usage of monads should as simple as functional composition `f(g(a))`. API should be close to native. So if we're talking about data structures, they should be produced in the same way as natives: by calling constructor function with or without `new` operator (I prefer the second approach).
+
 ## Usage
 
 *Note: [Babel](https://babeljs.io/) is used for transpiling Dgelong's sources.*
