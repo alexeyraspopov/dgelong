@@ -1,6 +1,6 @@
 *
-!README.md
 !LICENSE
 !package.json
+!*.md
 !*.js
 !lib/*.js
