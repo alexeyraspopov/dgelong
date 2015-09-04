@@ -1,10 +1,11 @@
 {
   "name": "dgelong",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A JavaScript Implementation of Useful First-class Citizens",
   "main": "bundle.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests/*.js",
+    "clean": "rm *.js",
     "bundle": "browserify -r ./lib/index.js -s Dgelong -t babelify > bundle.js",
     "build": "babel lib --out-dir . && rm index.js",
     "prepublish": "npm run bundle && npm run build"
