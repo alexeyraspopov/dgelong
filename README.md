@@ -20,37 +20,36 @@ I've read [Fantasy Land](https://github.com/fantasyland/fantasy-land) specificat
 
 ## Usage
 
-*Note: [Babel](https://babeljs.io/) is used for transpiling Dgelong's sources.*
+_**Note:** [Babel](https://babeljs.io/) is used for transpiling Dgelong's sources. The author highly recommends you to start using ECMAScript 6 in your project._
 
-### ECMAScript 5
+Dgelong's bundle uses UMD so it can be required in all environments (CommonJS, AMD, ES6 modules, browser).
 
-*Dgelong author highly recommends you to start using ECMAScript 6 in your project.*
-
-You can start easily with project [Babel](https://babeljs.io/).
-
-If you don't want to use Babel or **ECMAScript 6** I recommend you to require main file only:
+### CommonJS
 
 	var Dgelong = require('dgelong');
 
-So then you'll be able to use Dgelong's structures:
+### ECMAScript 6
 
-	var Maybe = Dgelong.Maybe,
-		Just = Dgelong.Just,
-		...;
+Just like in CommonJS Modules style you can grab everything in one object:
 
-This file is using UMD pattern so you're able to import it directly in browser:
+	import Dgelong from 'dgelong';
+
+Or just use something specific, for example:
+
+	import {Maybe, Future} from 'dgelong';
+
+But, along with that, you can import particular structures by using direct paths:
+
+	import Maybe, {Just, Nothing} from 'dgelong/maybe';
+	import Either, {Success, Failure} from 'dgelong/either';
+	import Future, {Resolve, Reject} from 'dgelong/future';
+	import Observable from 'dgelong/observable';
+
+### Browser
 
 	<script src="node_modules/dgelong/bundle.js"></script>
 
-Which will provide you `Dgelong` global variable.
-
-### ECMAScript 6
-
-You're able to import particular structures:
-
-	import Either, {Success, Failure} from 'dgelong/either';
-	import Maybe from 'dgelong/maybe';
-	import compose from 'dgelong/lib/compose';
+It will provide you `Dgelong` global variable.
 
 ## Time & Space
 
