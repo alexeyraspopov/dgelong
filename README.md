@@ -41,7 +41,7 @@ Or just use something specific, for example:
 But, along with that, you can import particular structures by using direct paths:
 
 	import Maybe, {Just, Nothing} from 'dgelong/maybe';
-	import Either, {Success, Failure} from 'dgelong/either';
+	import Either, {Right, Left} from 'dgelong/either';
 	import Future, {Resolve, Reject} from 'dgelong/future';
 	import Observable from 'dgelong/observable';
 
@@ -62,6 +62,8 @@ It will provide you `Dgelong` global variable.
 
 ## Maybe
 
+	import {Just, Nothing} from 'dgelong/maybe';
+
 	function square(n) {
 	    return n * n;
 	}
@@ -77,6 +79,8 @@ It will provide you `Dgelong` global variable.
 
 ## Either
 
+	import {Right as Success, Left as Failure} from 'dgelong/either';
+
 	function validateUserPassword(password) {
 	    if (password.length < 10) return Failure('Password too short');
 	    if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
@@ -88,6 +92,8 @@ It will provide you `Dgelong` global variable.
 	    .bind(savePassword, showError);
 
 ## Future
+
+	import Future from 'dgelong/future';
 
 	function fetch(url) {
 		return Future(function(resolve, reject) {
@@ -110,6 +116,8 @@ It will provide you `Dgelong` global variable.
 		.subscribe(showProducts);
 
 ## Observable
+
+	import Observable from 'dgelong/observable';
 
 	var clicks = Observable(function(next){
 		document.addEventListener('click', next);
