@@ -5,7 +5,9 @@
   "main": "bundle.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests/*.js",
-    "prepublish": "browserify -r ./index.js -s Dgelong -t babelify > bundle.js"
+    "bundle": "browserify -r ./lib/index.js -s Dgelong -t babelify > bundle.js",
+    "build": "babel lib --out-dir . && rm index.js",
+    "prepublish": "npm run bundle && npm run build"
   },
   "repository": "alexeyraspopov/dgelong",
   "keywords": [
