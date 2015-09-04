@@ -43,45 +43,51 @@
 </code></pre>
 
 <h2>
+<a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h2>
+
+<p>I've read <a href="https://github.com/fantasyland/fantasy-land">Fantasy Land</a> specification. I don't want make another implementation that requires Ph.D in Math. The usage of monads should be as simple as functional composition <code>f(g(a))</code>. API should be close to native. So if we're talking about data structures, they should be produced in the same way as natives: by calling constructor function with or without <code>new</code> operator (I prefer the second approach).</p>
+
+<h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p><em>Note: <a href="https://babeljs.io/">Babel</a> is used for transpiling Dgelong's sources.</em></p>
+<p><em><strong>Note:</strong> <a href="https://babeljs.io/">Babel</a> is used for transpiling Dgelong's sources. The author highly recommends you to start using ECMAScript 6 in your project.</em></p>
+
+<p>Dgelong's bundle uses UMD so it can be required in all environments (CommonJS, AMD, ES6 modules, browser).</p>
 
 <h3>
-<a id="ecmascript-5" class="anchor" href="#ecmascript-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 5</h3>
-
-<p><em>Dgelong author highly recommends you to start using ECMAScript 6 in your project.</em></p>
-
-<p>You can start easily with project <a href="https://babeljs.io/">Babel</a>.</p>
-
-<p>If you don't want to use Babel or <strong>ECMAScript 6</strong> I recommend you to require main file only:</p>
+<a id="commonjs" class="anchor" href="#commonjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>CommonJS</h3>
 
 <pre><code>var Dgelong = require('dgelong');
 </code></pre>
 
-<p>So then you'll be able to use Dgelong's structures:</p>
+<h3>
+<a id="ecmascript-6" class="anchor" href="#ecmascript-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 6</h3>
 
-<pre><code>var Maybe = Dgelong.Maybe,
-    Just = Dgelong.Just,
-    ...;
+<p>Just like in CommonJS Modules style you can grab everything in one object:</p>
+
+<pre><code>import Dgelong from 'dgelong';
 </code></pre>
 
-<p>This file is using UMD pattern so you're able to import it directly in browser:</p>
+<p>Or just use something specific, for example:</p>
+
+<pre><code>import {Maybe, Future} from 'dgelong';
+</code></pre>
+
+<p>But, along with that, you can import particular structures by using direct paths:</p>
+
+<pre><code>import Maybe, {Just, Nothing} from 'dgelong/maybe';
+import Either, {Right, Left} from 'dgelong/either';
+import Future, {Resolve, Reject} from 'dgelong/future';
+import Observable from 'dgelong/observable';
+</code></pre>
+
+<h3>
+<a id="browser" class="anchor" href="#browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser</h3>
 
 <pre><code>&lt;script src="node_modules/dgelong/bundle.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<p>Which will provide you <code>Dgelong</code> global variable.</p>
-
-<h3>
-<a id="ecmascript-6" class="anchor" href="#ecmascript-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 6</h3>
-
-<p>You're able to import particular structures:</p>
-
-<pre><code>import Either, {Success, Failure} from 'dgelong/either';
-import Maybe from 'dgelong/maybe';
-import compose from 'dgelong/lib/compose';
-</code></pre>
+<p>It will provide you <code>Dgelong</code> global variable.</p>
 
 <h2>
 <a id="time--space" class="anchor" href="#time--space" aria-hidden="true"><span class="octicon octicon-link"></span></a>Time &amp; Space</h2>
@@ -106,7 +112,9 @@ import compose from 'dgelong/lib/compose';
 <h2>
 <a id="maybe" class="anchor" href="#maybe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maybe</h2>
 
-<pre><code>function square(n) {
+<pre><code>import {Just, Nothing} from 'dgelong/maybe';
+
+function square(n) {
     return n * n;
 }
 
@@ -123,7 +131,9 @@ Just(5)
 <h2>
 <a id="either" class="anchor" href="#either" aria-hidden="true"><span class="octicon octicon-link"></span></a>Either</h2>
 
-<pre><code>function validateUserPassword(password) {
+<pre><code>import {Right as Success, Left as Failure} from 'dgelong/either';
+
+function validateUserPassword(password) {
     if (password.length &lt; 10) return Failure('Password too short');
     if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
 
@@ -137,7 +147,9 @@ validateUserPassword('boo')
 <h2>
 <a id="future" class="anchor" href="#future" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future</h2>
 
-<pre><code>function fetch(url) {
+<pre><code>import Future from 'dgelong/future';
+
+function fetch(url) {
     return Future(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
 
@@ -161,7 +173,9 @@ fetch('/products')
 <h2>
 <a id="observable" class="anchor" href="#observable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Observable</h2>
 
-<pre><code>var clicks = Observable(function(next){
+<pre><code>import Observable from 'dgelong/observable';
+
+var clicks = Observable(function(next){
     document.addEventListener('click', next);
 
     return {
