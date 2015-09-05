@@ -56,7 +56,7 @@ It will provide you `Dgelong` global variable.
  - Time (`bind`, `subscribe`)
    - Future (async task as value)
    - Observable (async lists)
- - Space (`bind`, `lift`)
+ - Space (`bind`, `pull`)
    - Maybe (null-safe computations)
    - Either (two-way composition)
 
