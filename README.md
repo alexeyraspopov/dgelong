@@ -26,28 +26,38 @@ Dgelong's bundle uses UMD so it can be required in all environments (CommonJS, A
 
 ### CommonJS
 
-	var Dgelong = require('dgelong');
+```javascript
+var Dgelong = require('dgelong');
+```
 
 ### ECMAScript 6
 
 Just like in CommonJS Modules style you can grab everything in one object:
 
-	import Dgelong from 'dgelong';
+```javascript
+import Dgelong from 'dgelong';
+```
 
 Or just use something specific, for example:
 
-	import {Maybe, Future} from 'dgelong';
+```javascript
+import {Maybe, Future} from 'dgelong';
+```
 
 But, along with that, you can import particular structures by using direct paths:
 
-	import Maybe, {Just, Nothing} from 'dgelong/maybe';
-	import Either, {Right, Left} from 'dgelong/either';
-	import Future, {Resolve, Reject} from 'dgelong/future';
-	import Observable from 'dgelong/observable';
+```javascript
+import Maybe, {Just, Nothing} from 'dgelong/maybe';
+import Either, {Right, Left} from 'dgelong/either';
+import Future, {Resolve, Reject} from 'dgelong/future';
+import Observable from 'dgelong/observable';
+```
 
 ### Browser
 
-	<script src="node_modules/dgelong/bundle.js"></script>
+```html
+<script src="node_modules/dgelong/bundle.js"></script>
+```
 
 It will provide you `Dgelong` global variable.
 
