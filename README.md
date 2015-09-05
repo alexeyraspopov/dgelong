@@ -72,74 +72,82 @@ It will provide you `Dgelong` global variable.
 
 ## Maybe
 
-	import {Just, Nothing} from 'dgelong/maybe';
+```javascript
+import {Just, Nothing} from 'dgelong/maybe';
 
-	function square(n) {
-	    return n * n;
-	}
+function square(n) {
+    return n * n;
+}
 
-	function isEven(n) {
-	    return n % 2 ? Nothing() : Just(n);
-	}
+function isEven(n) {
+    return n % 2 ? Nothing() : Just(n);
+}
 
-	Just(5)
-	    .bind(square) // returns Just(25)
-	    .bind(isEven) // returns Nothing()
-	    .bind(alert); // won't work
+Just(5)
+    .bind(square) // returns Just(25)
+    .bind(isEven) // returns Nothing()
+    .bind(alert); // won't work
+```
 
 ## Either
 
-	import {Right as Success, Left as Failure} from 'dgelong/either';
+```javascript
+import {Right as Success, Left as Failure} from 'dgelong/either';
 
-	function validateUserPassword(password) {
-	    if (password.length < 10) return Failure('Password too short');
-	    if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
+function validateUserPassword(password) {
+    if (password.length < 10) return Failure('Password too short');
+    if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
 
-	    return Success(password);
-	}
+    return Success(password);
+}
 
-	validateUserPassword('boo')
-	    .bind(savePassword, showError);
+validateUserPassword('boo')
+    .bind(savePassword, showError);
+```
 
 ## Future
 
-	import Future from 'dgelong/future';
+```javascript
+import Future from 'dgelong/future';
 
-	function fetch(url) {
-		return Future(function(resolve, reject) {
-			var xhr = new XMLHttpRequest();
+function fetch(url) {
+	return Future(function(resolve, reject) {
+		var xhr = new XMLHttpRequest();
 
-			xhr.onload = () => resolve(this.response);
-			xhr.onerror = () => reject(this);
+		xhr.onload = () => resolve(this.response);
+		xhr.onerror = () => reject(this);
 
-			xhr.open(url);
-			xhr.send(null);
+		xhr.open(url);
+		xhr.send(null);
 
-			return {
-				dispose() { xhr.abort(); }
-			};
-		});
-	}
+		return {
+			dispose() { xhr.abort(); }
+		};
+	});
+}
 
-	fetch('/products')
-		.bind(products => ...)
-		.subscribe(showProducts);
+fetch('/products')
+	.bind(products => ...)
+	.subscribe(showProducts);
+```
 
 ## Observable
 
-	import Observable from 'dgelong/observable';
+```javascript
+import Observable from 'dgelong/observable';
 
-	var clicks = Observable(function(next){
-		document.addEventListener('click', next);
+var clicks = Observable(function(next){
+	document.addEventListener('click', next);
 
-		return {
-			dispose(){ document.removeEventListener('click', next); }
-		};
-	});
+	return {
+		dispose(){ document.removeEventListener('click', next); }
+	};
+});
 
-	clicks
-		.map(event => event.target)
-		.forEach(element => ...);
+clicks
+	.map(event => event.target)
+	.forEach(element => ...);
+```
 
 ## License
 
