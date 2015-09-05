@@ -57,35 +57,30 @@
 <h3>
 <a id="commonjs" class="anchor" href="#commonjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>CommonJS</h3>
 
-<pre><code>var Dgelong = require('dgelong');
-</code></pre>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> Dgelong <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>dgelong<span class="pl-pds">'</span></span>);</pre></div>
 
 <h3>
 <a id="ecmascript-6" class="anchor" href="#ecmascript-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>ECMAScript 6</h3>
 
 <p>Just like in CommonJS Modules style you can grab everything in one object:</p>
 
-<pre><code>import Dgelong from 'dgelong';
-</code></pre>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">import</span> Dgelong <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong<span class="pl-pds">'</span></span>;</pre></div>
 
 <p>Or just use something specific, for example:</p>
 
-<pre><code>import {Maybe, Future} from 'dgelong';
-</code></pre>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">import</span> {Maybe, Future} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong<span class="pl-pds">'</span></span>;</pre></div>
 
 <p>But, along with that, you can import particular structures by using direct paths:</p>
 
-<pre><code>import Maybe, {Just, Nothing} from 'dgelong/maybe';
-import Either, {Right, Left} from 'dgelong/either';
-import Future, {Resolve, Reject} from 'dgelong/future';
-import Observable from 'dgelong/observable';
-</code></pre>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">import</span> Maybe, {Just, Nothing} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/maybe<span class="pl-pds">'</span></span>;
+<span class="pl-k">import</span> Either, {Right, Left} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/either<span class="pl-pds">'</span></span>;
+<span class="pl-k">import</span> Future, {Resolve, Reject} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/future<span class="pl-pds">'</span></span>;
+<span class="pl-k">import</span> Observable <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/observable<span class="pl-pds">'</span></span>;</pre></div>
 
 <h3>
 <a id="browser" class="anchor" href="#browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser</h3>
 
-<pre><code>&lt;script src="node_modules/dgelong/bundle.js"&gt;&lt;/script&gt;
-</code></pre>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/dgelong/bundle.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <p>It will provide you <code>Dgelong</code> global variable.</p>
 
@@ -100,7 +95,7 @@ import Observable from 'dgelong/observable';
 <li>Observable (async lists)</li>
 </ul>
 </li>
-<li>Space (<code>bind</code>, <code>lift</code>)
+<li>Space (<code>bind</code>, <code>pull</code>)
 
 <ul>
 <li>Maybe (null-safe computations)</li>
@@ -112,81 +107,77 @@ import Observable from 'dgelong/observable';
 <h2>
 <a id="maybe" class="anchor" href="#maybe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maybe</h2>
 
-<pre><code>import {Just, Nothing} from 'dgelong/maybe';
+<div class="highlight highlight-javascript"><pre><span class="pl-k">import</span> {Just, Nothing} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/maybe<span class="pl-pds">'</span></span>;
 
-function square(n) {
-    return n * n;
+<span class="pl-k">function</span> <span class="pl-en">square</span>(<span class="pl-smi">n</span>) {
+    <span class="pl-k">return</span> n <span class="pl-k">*</span> n;
 }
 
-function isEven(n) {
-    return n % 2 ? Nothing() : Just(n);
+<span class="pl-k">function</span> <span class="pl-en">isEven</span>(<span class="pl-smi">n</span>) {
+    <span class="pl-k">return</span> n <span class="pl-k">%</span> <span class="pl-c1">2</span> <span class="pl-k">?</span> Nothing() <span class="pl-k">:</span> Just(n);
 }
 
-Just(5)
-    .bind(square) // returns Just(25)
-    .bind(isEven) // returns Nothing()
-    .bind(alert); // won't work
-</code></pre>
+Just(<span class="pl-c1">5</span>)
+    .bind(square) <span class="pl-c">// returns Just(25)</span>
+    .bind(isEven) <span class="pl-c">// returns Nothing()</span>
+    .bind(alert); <span class="pl-c">// won't work</span></pre></div>
 
 <h2>
 <a id="either" class="anchor" href="#either" aria-hidden="true"><span class="octicon octicon-link"></span></a>Either</h2>
 
-<pre><code>import {Right as Success, Left as Failure} from 'dgelong/either';
+<div class="highlight highlight-javascript"><pre><span class="pl-k">import</span> {Right <span class="pl-k">as</span> Success, Left <span class="pl-k">as</span> Failure} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/either<span class="pl-pds">'</span></span>;
 
-function validateUserPassword(password) {
-    if (password.length &lt; 10) return Failure('Password too short');
-    if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
+<span class="pl-k">function</span> <span class="pl-en">validateUserPassword</span>(<span class="pl-smi">password</span>) {
+    <span class="pl-k">if</span> (password.<span class="pl-c1">length</span> <span class="pl-k">&lt;</span> <span class="pl-c1">10</span>) <span class="pl-k">return</span> Failure(<span class="pl-s"><span class="pl-pds">'</span>Password too short<span class="pl-pds">'</span></span>);
+    <span class="pl-k">if</span> (<span class="pl-k">!</span><span class="pl-sr"><span class="pl-pds">/</span><span class="pl-c1">[<span class="pl-c1">0-9</span>]</span><span class="pl-pds">/</span>g</span>.<span class="pl-c1">test</span>(password)) <span class="pl-k">return</span> Failure(<span class="pl-s"><span class="pl-pds">'</span>Password should contain numbers<span class="pl-pds">'</span></span>);
 
-    return Success(password);
+    <span class="pl-k">return</span> Success(password);
 }
 
-validateUserPassword('boo')
-    .bind(savePassword, showError);
-</code></pre>
+validateUserPassword(<span class="pl-s"><span class="pl-pds">'</span>boo<span class="pl-pds">'</span></span>)
+    .bind(savePassword, showError);</pre></div>
 
 <h2>
 <a id="future" class="anchor" href="#future" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future</h2>
 
-<pre><code>import Future from 'dgelong/future';
+<div class="highlight highlight-javascript"><pre><span class="pl-k">import</span> Future <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/future<span class="pl-pds">'</span></span>;
 
-function fetch(url) {
-    return Future(function(resolve, reject) {
-        var xhr = new XMLHttpRequest();
+<span class="pl-k">function</span> <span class="pl-en">fetch</span>(<span class="pl-smi">url</span>) {
+    <span class="pl-k">return</span> Future(<span class="pl-k">function</span>(<span class="pl-smi">resolve</span>, <span class="pl-smi">reject</span>) {
+        <span class="pl-k">var</span> xhr <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">XMLHttpRequest</span>();
 
-        xhr.onload = () =&gt; resolve(this.response);
-        xhr.onerror = () =&gt; reject(this);
+        xhr.<span class="pl-en">onload</span> <span class="pl-k">=</span> ()<span class="pl-k"> =&gt;</span> resolve(<span class="pl-v">this</span>.response);
+        xhr.<span class="pl-en">onerror</span> <span class="pl-k">=</span> ()<span class="pl-k"> =&gt;</span> reject(<span class="pl-v">this</span>);
 
-        xhr.open(url);
-        xhr.send(null);
+        xhr.<span class="pl-c1">open</span>(url);
+        xhr.<span class="pl-c1">send</span>(<span class="pl-c1">null</span>);
 
-        return {
-            dispose() { xhr.abort(); }
+        <span class="pl-k">return</span> {
+            <span class="pl-en">dispose</span>() { xhr.<span class="pl-c1">abort</span>(); }
         };
     });
 }
 
-fetch('/products')
-    .bind(products =&gt; ...)
-    .subscribe(showProducts);
-</code></pre>
+fetch(<span class="pl-s"><span class="pl-pds">'</span>/products<span class="pl-pds">'</span></span>)
+    .bind(products <span class="pl-k">=&gt;</span> ...)
+    .subscribe(showProducts);</pre></div>
 
 <h2>
 <a id="observable" class="anchor" href="#observable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Observable</h2>
 
-<pre><code>import Observable from 'dgelong/observable';
+<div class="highlight highlight-javascript"><pre><span class="pl-k">import</span> Observable <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>dgelong/observable<span class="pl-pds">'</span></span>;
 
-var clicks = Observable(function(next){
-    document.addEventListener('click', next);
+<span class="pl-k">var</span> clicks <span class="pl-k">=</span> Observable(<span class="pl-k">function</span>(<span class="pl-smi">next</span>){
+    <span class="pl-c1">document</span>.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, next);
 
-    return {
-        dispose(){ document.removeEventListener('click', next); }
+    <span class="pl-k">return</span> {
+        <span class="pl-en">dispose</span>(){ <span class="pl-c1">document</span>.removeEventListener(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, next); }
     };
 });
 
 clicks
-    .map(event =&gt; event.target)
-    .forEach(element =&gt; ...);
-</code></pre>
+    .map(<span class="pl-c1">event</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">event</span>.<span class="pl-c1">target</span>)
+    .forEach(element <span class="pl-k">=&gt;</span> ...);</pre></div>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
