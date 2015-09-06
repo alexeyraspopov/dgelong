@@ -3,29 +3,29 @@ import sinon from "sinon";
 import Maybe, {Just, Nothing} from "../lib/maybe";
 
 describe("Just", function() {
-	var value = 13,
-		morphism = n => n * n;
+	var value = 13;
+	var morphism = n => n * n;
 
 	it("should satisfy the left identity law", function() {
-		var m = Just(value),
-			left = m.bind(morphism),
-			right = morphism(value);
+		var m = Just(value);
+		var left = m.bind(morphism);
+		var right = morphism(value);
 
 		expect(left.valueOf()).to.be(right);
 	});
 
 	it("should satisfy the right identity law", function() {
-		var m = Just(value),
-			left = m.bind(Just),
-			right = m;
+		var m = Just(value);
+		var left = m.bind(Just);
+		var right = m;
 
 		expect(left.valueOf()).to.be(right.valueOf());
 	});
 
 	it("should satisfy the associativity law", function() {
-		var m = Just(value),
-			left = m.bind(Just).bind(morphism),
-			right = m.bind(v => Just(v).bind(morphism));
+		var m = Just(value);
+		var left = m.bind(Just).bind(morphism);
+		var right = m.bind(v => Just(v).bind(morphism));
 
 		expect(left.valueOf()).to.be(right.valueOf());
 	});
@@ -33,8 +33,8 @@ describe("Just", function() {
 
 describe("Nothing", function() {
 	it("should accept alternative way of computation", function() {
-		var right = sinon.spy(),
-			left = sinon.spy();
+		var right = sinon.spy();
+		var left = sinon.spy();
 
 		Nothing().bind(right, left);
 
@@ -53,9 +53,9 @@ describe("Nothing", function() {
 
 describe("Maybe", function() {
 	it("should recognize nullable values", function() {
-		var subscriber1 = sinon.spy(),
-			subscriber2 = sinon.spy(),
-			subscriber3 = sinon.spy();
+		var subscriber1 = sinon.spy();
+		var subscriber2 = sinon.spy();
+		var subscriber3 = sinon.spy();
 
 		Maybe(null).bind(subscriber1, subscriber2);
 		Maybe(true).bind(subscriber3);
