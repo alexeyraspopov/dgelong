@@ -1,5 +1,7 @@
 # Dgelong
 
+![build status](https://api.travis-ci.org/alexeyraspopov/dgelong.svg?branch=master)
+
 ***It's not ready for production. Stay tuned.***
 
 Set of useful first-class structures which allow you to get rid of your developer's pain.
