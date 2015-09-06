@@ -1,12 +1,12 @@
-import expect from 'expect.js';
-import sinon from 'sinon';
-import Maybe, {Just, Nothing} from '../lib/maybe';
+import expect from "expect.js";
+import sinon from "sinon";
+import Maybe, {Just, Nothing} from "../lib/maybe";
 
-describe('Just', function() {
+describe("Just", function() {
 	var value = 13,
 		morphism = n => n * n;
 
-	it('should satisfy the left identity law', function() {
+	it("should satisfy the left identity law", function() {
 		var m = Just(value),
 			left = m.bind(morphism),
 			right = morphism(value);
@@ -14,7 +14,7 @@ describe('Just', function() {
 		expect(left.valueOf()).to.be(right);
 	});
 
-	it('should satisfy the right identity law', function() {
+	it("should satisfy the right identity law", function() {
 		var m = Just(value),
 			left = m.bind(Just),
 			right = m;
@@ -22,7 +22,7 @@ describe('Just', function() {
 		expect(left.valueOf()).to.be(right.valueOf());
 	});
 
-	it('should satisfy the associativity law', function() {
+	it("should satisfy the associativity law", function() {
 		var m = Just(value),
 			left = m.bind(Just).bind(morphism),
 			right = m.bind(v => Just(v).bind(morphism));
@@ -31,8 +31,8 @@ describe('Just', function() {
 	});
 });
 
-describe('Nothing', function() {
-	it('should accept alternative way of computation', function() {
+describe("Nothing", function() {
+	it("should accept alternative way of computation", function() {
 		var right = sinon.spy(),
 			left = sinon.spy();
 
@@ -42,7 +42,7 @@ describe('Nothing', function() {
 		expect(left.called).to.be(true);
 	});
 
-	it('should use Just in alternative way', function() {
+	it("should use Just in alternative way", function() {
 		var value = 5;
 
 		Nothing()
@@ -51,8 +51,8 @@ describe('Nothing', function() {
 	});
 });
 
-describe('Maybe', function() {
-	it('should recognize nullable values', function() {
+describe("Maybe", function() {
+	it("should recognize nullable values", function() {
 		var subscriber1 = sinon.spy(),
 			subscriber2 = sinon.spy(),
 			subscriber3 = sinon.spy();
