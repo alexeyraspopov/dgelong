@@ -38,17 +38,9 @@ describe("Nothing", function() {
 
 		var result = Nothing().bind(right, left);
 
-		expect(right.called).not.to.be(true);
-		expect(left.called).to.be(true);
+		expect(right.called).to.be(false);
+		expect(left.called).to.be(false);
 		expect(result.valueOf()).to.be(null);
-	});
-
-	it("should use Just in alternative way", function() {
-		var value = 5;
-
-		Nothing()
-			.bind(null, () => Just(value))
-			.bind(wrapped => expect(wrapped).to.be(value));
 	});
 });
 
@@ -61,8 +53,7 @@ describe("Maybe", function() {
 		Maybe(null).bind(subscriber1, subscriber2);
 		Maybe(true).bind(subscriber3);
 
-		expect(subscriber1.called).not.to.be(true);
-		expect(subscriber2.called).to.be(true);
+		expect(subscriber1.called).to.be(false);
 		expect(subscriber3.called).to.be(true);
 	});
 });
