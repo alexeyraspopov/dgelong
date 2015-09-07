@@ -1,6 +1,6 @@
 {
   "name": "dgelong",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A JavaScript Implementation of Useful First-class Citizens",
   "main": "bundle.js",
   "scripts": {
