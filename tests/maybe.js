@@ -34,7 +34,7 @@ describe("Just", function() {
 describe("Nothing", function() {
 	var value = 13;
 
-	it("should accept alternative way of computation only for Just", function() {
+	xit("should accept alternative way of computation only for Just", function() {
 		var right = sinon.spy();
 		var left = sinon.stub().returns(Just(value));
 
