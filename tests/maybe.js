@@ -44,6 +44,16 @@ describe("Nothing", function() {
 		expect(left.called).to.be(true);
 		expect(result.valueOf()).to.be(value);
 	});
+
+	it("should pull null in alternative way", function() {
+		var right = sinon.spy();
+		var left = sinon.spy();
+
+		Nothing().pull(right, left);
+
+		expect(right.called).to.be(false);
+		expect(left.called).to.be(true);
+	});
 });
 
 describe("Maybe", function() {
