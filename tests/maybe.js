@@ -32,15 +32,17 @@ describe("Just", function() {
 });
 
 describe("Nothing", function() {
-	it("should not accept alternative way of computation", function() {
+	var value = 13;
+
+	it("should accept alternative way of computation only for Just", function() {
 		var right = sinon.spy();
-		var left = sinon.spy();
+		var left = sinon.stub().returns(Just(value));
 
 		var result = Nothing().bind(right, left);
 
 		expect(right.called).to.be(false);
-		expect(left.called).to.be(false);
-		expect(result.valueOf()).to.be(null);
+		expect(left.called).to.be(true);
+		expect(result.valueOf()).to.be(value);
 	});
 });
 
