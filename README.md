@@ -27,13 +27,13 @@ _**Note:** [Babel](https://babeljs.io/) is used for transpiling Dgelong's source
 
 Dgelong's bundle uses UMD so it can be required in all environments (CommonJS, AMD, ES6 modules, browser).
 
-### CommonJS
+### CommonJS Modules
 
 ```javascript
 var Dgelong = require('dgelong');
 ```
 
-### ECMAScript 6
+### ES6 Modules
 
 Just like in CommonJS Modules style you can grab everything in one object:
 
