@@ -1,8 +1,5 @@
 # Dgelong
 
-![build status](https://api.travis-ci.org/alexeyraspopov/dgelong.svg?branch=master)
-[![gitter](https://img.shields.io/badge/gitter-join_chat-brightgreen.svg)](https://gitter.im/alexeyraspopov/dgelong)
-
 ***It's not ready for production. Stay tuned.***
 
 Set of useful first-class structures which allow you to get rid of your developer's pain.
