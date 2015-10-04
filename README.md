@@ -22,7 +22,7 @@ I don't want make another implementation that requires Ph.D in Math. The usage o
 
 _**Note:** [Babel](https://babeljs.io/) is used for transpiling Dgelong's sources. The author highly recommends you to start using ECMAScript 6 in your project._
 
-Dgelong's bundle uses UMD so it can be required in all environments (CommonJS, AMD, ES6 modules, browser).
+Dgelong's bundle uses UMD so it can be used in all environments (CommonJS, AMD, ES6 modules, browser).
 
 ### CommonJS Modules
 
