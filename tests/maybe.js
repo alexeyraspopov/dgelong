@@ -8,7 +8,7 @@ describe("Just", function() {
 
 	it("should satisfy the left identity law", function() {
 		var m = Just(value);
-		var left = m.bind(morphism);
+		var left = m.map(morphism);
 		var right = morphism(value);
 
 		expect(left.valueOf()).to.be(right);
@@ -16,7 +16,7 @@ describe("Just", function() {
 
 	it("should satisfy the right identity law", function() {
 		var m = Just(value);
-		var left = m.bind(Just);
+		var left = m.map(Just);
 		var right = m;
 
 		expect(left.valueOf()).to.be(right.valueOf());
@@ -24,8 +24,8 @@ describe("Just", function() {
 
 	it("should satisfy the associativity law", function() {
 		var m = Just(value);
-		var left = m.bind(Just).bind(morphism);
-		var right = m.bind(v => Just(v).bind(morphism));
+		var left = m.map(Just).map(morphism);
+		var right = m.map(v => Just(v).map(morphism));
 
 		expect(left.valueOf()).to.be(right.valueOf());
 	});
@@ -38,7 +38,7 @@ describe("Nothing", function() {
 		var right = sinon.spy();
 		var left = sinon.stub().returns(Just(value));
 
-		var result = Nothing().bind(right, left);
+		var result = Nothing().map(right, left);
 
 		expect(right.called).to.be(false);
 		expect(left.called).to.be(true);
@@ -62,8 +62,8 @@ describe("Maybe", function() {
 		var subscriber2 = sinon.spy();
 		var subscriber3 = sinon.spy();
 
-		Maybe(null).bind(subscriber1, subscriber2);
-		Maybe(true).bind(subscriber3);
+		Maybe(null).map(subscriber1, subscriber2);
+		Maybe(true).map(subscriber3);
 
 		expect(subscriber1.called).to.be(false);
 		expect(subscriber3.called).to.be(true);
