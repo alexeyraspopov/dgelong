@@ -151,4 +151,4 @@ clicks
 
 ## License
 
-[MIT (c) Alexey Raspopov](./LICENSE)
+MIT
