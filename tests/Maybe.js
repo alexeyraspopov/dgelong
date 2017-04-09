@@ -1,5 +1,5 @@
 import expect from "expect.js";
-import {Just, Nothing} from '../lib/Maybe';
+import {Just, Nothing, from} from '../lib/Maybe';
 
 describe('Maybe', function() {
 	var v = 13;
@@ -41,5 +41,28 @@ describe('Maybe', function() {
 
 	describe('Nothing', function() {
 
+	});
+
+	describe('from', function() {
+		it('should generate Maybe instance from a generator', function() {
+			var m = from(function* () {
+				return v;
+			});
+
+			expect(m.type).to.be(Just);
+			expect(m.valueOf()).to.be(v);
+		});
+
+		it('should return Nothing if a step of generator has failed', function() {
+			var flag = false;
+			var m = from(function* () {
+				const a = yield null;
+				flag = true;
+				return v;
+			});
+
+			expect(m.type).to.be(Nothing);
+			expect(flag).to.be(false);
+		});
 	});
 });
