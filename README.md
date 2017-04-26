@@ -20,20 +20,6 @@ I don't want make another implementation that requires Ph.D in Math. The usage o
 
 ## Usage
 
-_**Note:** [Babel](https://babeljs.io/) is used for transpiling Dgelong's sources. The author highly recommends you to start using ECMAScript 6 in your project._
-
-Dgelong's bundle uses UMD so it can be used in all environments (CommonJS, AMD, ES6 modules, browser).
-
-### CommonJS Modules
-
-```javascript
-var Dgelong = require('dgelong');
-```
-
-### ES6 Modules
-
-Just like in CommonJS Modules style you can grab everything in one object:
-
 ```javascript
 import Dgelong from 'dgelong';
 ```
@@ -41,39 +27,22 @@ import Dgelong from 'dgelong';
 Or just use something specific, for example:
 
 ```javascript
-import {Maybe, Future} from 'dgelong';
+import { Option, Future } from 'dgelong';
 ```
 
 But, along with that, you can import particular structures by using direct paths:
 
 ```javascript
-import Maybe, {Just, Nothing} from 'dgelong/maybe';
-import Either, {Right, Left} from 'dgelong/either';
-import Future, {Resolve, Reject} from 'dgelong/future';
-import Observable from 'dgelong/observable';
+import Option, { Just, Nothing } from 'dgelong/lib/Option';
+import Either, { Right, Left } from 'dgelong/lib/Either';
+import Future, { Resolve, Reject } from 'dgelong/lib/Future';
+import Observable from 'dgelong/lib/Observable';
 ```
 
-### Browser
-
-```html
-<script src="node_modules/dgelong/bundle.js"></script>
-```
-
-It will provide you `Dgelong` global variable.
-
-## Time & Space
-
- - Time (`bind`, `subscribe`)
-   - Future (async task as value)
-   - Observable (async lists)
- - Space (`bind`, `pull`)
-   - Maybe (null-safe computations)
-   - Either (two-way composition)
-
-## Maybe
+## Option
 
 ```javascript
-import {Just, Nothing} from 'dgelong/maybe';
+import { Just, Nothing } from 'dgelong/option';
 
 function square(n) {
     return n * n;
@@ -84,25 +53,25 @@ function isEven(n) {
 }
 
 Just(5)
-    .bind(square) // returns Just(25)
-    .bind(isEven) // returns Nothing()
-    .bind(alert); // won't work
+    .map(square) // returns Just(25)
+    .map(isEven) // returns Nothing()
+    .map(alert); // won't work
 ```
 
 ## Either
 
 ```javascript
-import {Right as Success, Left as Failure} from 'dgelong/either';
+import { Success, Failure } from 'dgelong/either';
 
 function validateUserPassword(password) {
-    if (password.length < 10) return Failure('Password too short');
-    if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
+  if (password.length < 10) return Failure('Password is too short');
+  if (!/[0-9]/g.test(password)) return Failure('Password should contain numbers');
 
-    return Success(password);
+  return Success(password);
 }
 
 validateUserPassword('boo')
-    .bind(savePassword, showError);
+  .map(savePassword, showError);
 ```
 
 ## Future
