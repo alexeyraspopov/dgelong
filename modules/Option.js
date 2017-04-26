@@ -1,4 +1,4 @@
-export default class Maybe {
+export default class Option {
   static of(value) {
     return isDefined(value) ? new Just(value) : new Nothing();
   }
@@ -9,7 +9,7 @@ export default class Maybe {
     let value;
 
   	while (true) {
-  		step = iterator.next(value);
+      step = iterator.next(value);
 
       if (step.done || !isDefined(step.value)) {
         iterator.return();
@@ -23,7 +23,7 @@ export default class Maybe {
       }
   	}
 
-  	return Maybe.of(step.value);
+  	return Option.of(step.value);
   }
 }
 
@@ -33,7 +33,7 @@ export class Just {
   }
 
   map(morphism) {
-    return Maybe.of(morphism(this.value));
+    return Option.of(morphism(this.value));
   }
 
   valueOf() {
@@ -41,7 +41,7 @@ export class Just {
   }
 
   [Symbol.iterator]() {
-    return new MaybeIterator(this.value);
+    return new OptionIterator(this.value);
   }
 }
 
@@ -55,11 +55,11 @@ export class Nothing {
   }
 
   [Symbol.iterator]() {
-    return new MaybeIterator(null);
+    return new OptionIterator(null);
   }
 }
 
-class MaybeIterator {
+class OptionIterator {
   constructor(value) {
     this.value = value;
   }
