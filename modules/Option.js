@@ -16,7 +16,10 @@ export default class Option {
         break;
       }
 
-      // TODO: if Nothing — return Nothing immediately
+      if (step.value instanceof Nothing) {
+        return step.value;
+      }
+
       if (step.value instanceof Just) {
         value = step.value.valueOf();
       } else {
