@@ -16,6 +16,7 @@ export default class Option {
         break;
       }
 
+      // TODO: if Nothing — return Nothing immediately
       if (step.value instanceof Just) {
         value = step.value.valueOf();
       } else {
@@ -24,6 +25,18 @@ export default class Option {
   	}
 
   	return Option.of(step.value);
+  }
+
+  static match(value, matchers) {
+    if (value instanceof Just) {
+      return matchers.Just(value);
+    }
+
+    if (value instanceof Nothing) {
+      return matchers.Nothing();
+    }
+
+    throw new Error(`Unable to match ${value}`);
   }
 }
 
