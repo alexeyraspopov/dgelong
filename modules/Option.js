@@ -52,10 +52,6 @@ export class Just {
   valueOf() {
     return this.value;
   }
-
-  [Symbol.iterator]() {
-    return new OptionIterator(this.value);
-  }
 }
 
 export class Nothing {
@@ -64,28 +60,6 @@ export class Nothing {
   }
 
   valueOf() {
-    return null;
-  }
-
-  [Symbol.iterator]() {
-    return new OptionIterator(null);
-  }
-}
-
-class OptionIterator {
-  constructor(value) {
-    this.value = value;
-  }
-
-  next() {
-    return { value: this.value, done: true };
-  }
-
-  return() {
-    return null;
-  }
-
-  throw() {
     return null;
   }
 }
