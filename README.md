@@ -1,7 +1,5 @@
 # Dgelong
 
-***It's not ready for production. Stay tuned.***
-
 Set of useful first-class structures which allow you to get rid of your developer's pain.
 
  * **Flatten** by default.
@@ -12,7 +10,7 @@ Set of useful first-class structures which allow you to get rid of your develope
 
 ## Install
 
-	npm install dgelong --save
+    npm install dgelong
 
 ## Motivation
 
@@ -27,22 +25,13 @@ import Dgelong from 'dgelong';
 Or just use something specific, for example:
 
 ```javascript
-import { Option, Future } from 'dgelong';
-```
-
-But, along with that, you can import particular structures by using direct paths:
-
-```javascript
-import Option, { Just, Nothing } from 'dgelong/lib/Option';
-import Either, { Right, Left } from 'dgelong/lib/Either';
-import Future, { Resolve, Reject } from 'dgelong/lib/Future';
-import Observable from 'dgelong/lib/Observable';
+import { Option, Either } from 'dgelong';
 ```
 
 ## Option
 
 ```javascript
-import { Just, Nothing } from 'dgelong/option';
+import { Just, Nothing } from 'dgelong';
 
 function square(n) {
     return n * n;
@@ -52,10 +41,10 @@ function isEven(n) {
     return n % 2 ? Nothing() : Just(n);
 }
 
-Just(5)
+new Just(5)
     .map(square) // returns Just(25)
     .map(isEven) // returns Nothing()
-    .map(alert); // won't work
+    .map(alert); // won't be executed
 ```
 
 ## Either
@@ -73,51 +62,3 @@ function validateUserPassword(password) {
 validateUserPassword('boo')
   .map(savePassword, showError);
 ```
-
-## Future
-
-```javascript
-import Future from 'dgelong/future';
-
-function fetch(url) {
-	return Future(function(resolve, reject) {
-		var xhr = new XMLHttpRequest();
-
-		xhr.onload = () => resolve(this.response);
-		xhr.onerror = () => reject(this);
-
-		xhr.open(url);
-		xhr.send(null);
-
-		return {
-			dispose() { xhr.abort(); }
-		};
-	});
-}
-
-fetch('/products')
-	.bind(products => ...)
-	.subscribe(showProducts);
-```
-
-## Observable
-
-```javascript
-import Observable from 'dgelong/observable';
-
-var clicks = Observable(function(next){
-	document.addEventListener('click', next);
-
-	return {
-		dispose(){ document.removeEventListener('click', next); }
-	};
-});
-
-clicks
-	.map(event => event.target)
-	.forEach(element => ...);
-```
-
-## License
-
-MIT
