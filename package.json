@@ -1,7 +1,7 @@
 {
   "name": "dgelong",
-  "version": "0.0.20",
-  "description": "A JavaScript Implementation of Useful First-class Citizens",
+  "version": "0.1.0",
+  "description": "A JavaScript Implementation of useful First-class Citizens",
   "main": "bundle.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests/*.js",
@@ -21,10 +21,7 @@
   ],
   "author": "Alexey Raspopov",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alexeyraspopov/dgelong/issues"
-  },
-  "homepage": "https://github.com/alexeyraspopov/dgelong",
+  "homepage": "https://dgelong.js.org/",
   "devDependencies": {
     "babel": "~5.8.21",
     "babelify": "~6.2.0",
