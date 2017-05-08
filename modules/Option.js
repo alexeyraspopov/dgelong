@@ -1,5 +1,9 @@
 export default class Option {
   static of(value) {
+    if (value instanceof Just || value instanceof Nothing) {
+      return value;
+    }
+
     return isDefined(value) ? new Just(value) : new Nothing();
   }
 
